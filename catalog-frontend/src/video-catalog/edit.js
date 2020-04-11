@@ -23,7 +23,6 @@ function VideoEdit({id, openModal, setOpenModal}){
     async function loadDetail(){
         try{
             let res = await api.get('videos/'+id);
-            console.log(res.data);
             setVideoData(res.data);
         }catch(err){
             
@@ -38,7 +37,6 @@ function VideoEdit({id, openModal, setOpenModal}){
                 console.log(err);
             }
         }else{
-
             try{
                 await api.post('videos', videoData);
             }catch(err){
@@ -52,36 +50,42 @@ function VideoEdit({id, openModal, setOpenModal}){
     return <>
 
         <Dialog open={openModal} aria-labelledby="about-movie-dialog">
-        <DialogTitle id="about-movie-dialog">About movie</DialogTitle>
+        <DialogTitle id="about-movie-dialog">About movie <Button>Remove</Button></DialogTitle>
         <DialogContent>
             <TextField
-                value={videoData.title || ''}
-                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,title:value}));}}
+                value={videoData.Title || ''}
+                label="Title"
+                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,Title:value}));}}
                 fullWidth
             />
             <TextField
                 value={videoData.genre || ''}
-                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,genre:value}));}}
+                label="Genre"
+                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,Genre:value}));}}
                 fullWidth
             />
             <TextField
-                value={videoData.releaseDate || ''}
-                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,releaseDate:value}));}}
+                value={videoData.Released || ''}
+                label="Released"
+                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,Released:value}));}}
                 fullWidth
             />
             <TextField
-                value={videoData.mainActors || ''}
-                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,mainActors:value}));}}
+                value={videoData.Actors || ''}
+                label="Actors"
+                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,Actors:value}));}}
                 fullWidth
             />
 
             <TextField
-                value={videoData.summarizedPlot || ''}
-                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,summarizedPlot:value}));}}
+                value={videoData.Plot || ''}
+                label="Plot"
+                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,Plot:value}));}}
                 fullWidth
             />
              <TextField
                 value={videoData.youtubeTrailer || ''}
+                label="Youtube Trailer"
                 onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,youtubeTrailer:value}));}}
                 fullWidth
             />

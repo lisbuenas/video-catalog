@@ -26,11 +26,12 @@ exports.update = async function (req, res) {
 exports.create = function (req, res) {
     let video = new Video(
         {
-            title: req.body.title,
-            genre: req.body.genre,
-            releaseDate:req.body.releaseDate,
-            mainActors: req.body.mainActors,
-            summarizedPlot: req.body.summarizedPlot,
+            Title: req.body.Title,
+            Genre: req.body.Genre,
+            Released:req.body.Released,
+            Actors: req.body.Actors,
+            Plot: req.body.Plot,
+            Poster: req.body.Poster,
             youtubeTrailer: req.body.youtubeTrailer
         }
     );

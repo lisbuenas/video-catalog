@@ -71,13 +71,13 @@ function VideoImport({id, openImportModal, setOpenImportModal}){
     async function saveDetail(){
         if(id){
             try{
-                await api.put('videos/' + id, videoData);
+                await api.put('videos/' + id, {...videoData});
             }catch(err){
                 console.log(err);
             }
         }else{
             try{
-                await api.post('videos', videoData);
+                await api.post('videos', {...videoData});
             }catch(err){
                 console.log(err);
             }

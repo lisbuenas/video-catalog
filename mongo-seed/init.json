@@ -1,14 +1,12 @@
-[
-    {
-      "name": "Joe Smith",
-      "email": "jsmith@gmail.com",
-      "age": 40,
-      "admin": false
-    },
-    {
-      "name": "Jen Ford",
-      "email": "jford@gmail.com",
-      "age": 45,
-      "admin": true
-    }
-  ]
+{"_id":{"$oid":"5e90992dcea30d09003e4faf"},"title":"testeGuardians of the Galaxy Vol. 2","genre":"Action, Adventure, Comedy, Sci-Fi","releaseDate":"10/20/2019","mainActors":"Ator 1, Ator 2777, Ator 23","youtubeVideo":"https://www.youtube.com/watch?v=wUn05hdkhjM","poster":"https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e914e0666c76e06cc649887"},"Title":"Fast & Furious 6","Genre":"Action, Adventure, Thriller","Released":"24 May 2013","Actors":"Vin Diesel, Paul Walker, Dwayne Johnson, Jordana Brewster","Poster":"https://m.media-amazon.com/images/M/MV5BMTM3NTg2NDQzOF5BMl5BanBnXkFtZTcwNjc2NzQzOQ@@._V1_SX300.jpg","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e914e0d66c76e06cc649888"},"Title":"Fast Times at Ridgemont High","Genre":"Comedy, Drama","Released":"13 Aug 1982","Actors":"Sean Penn, Jennifer Jason Leigh, Judge Reinhold, Robert Romanus","Poster":"https://m.media-amazon.com/images/M/MV5BYzBlZjE1MDctYjZmZC00ZTJmLWFkOWEtYjdmZDZkODBkZmI2XkEyXkFqcGdeQXVyNjQ2MjQ5NzM@._V1_SX300.jpg","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e914e1866c76e06cc649889"},"Title":"2 Fast 2 Furious","Genre":"Action, Crime, Thriller","Released":"06 Jun 2003","Actors":"Paul Walker, Tyrese Gibson, Eva Mendes, Cole Hauser","Poster":"https://m.media-amazon.com/images/M/MV5BMzExYjcyYWMtY2JkOC00NDUwLTg2OTgtMDI3MGY2OWQzMDE2XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e914e1866c76e06cc64988a"},"Title":"2 Fast 2 Furious","Genre":"Action, Crime, Thriller","Released":"06 Jun 2003","Actors":"Paul Walker, Tyrese Gibson, Eva Mendes, Cole Hauser","Poster":"https://m.media-amazon.com/images/M/MV5BMzExYjcyYWMtY2JkOC00NDUwLTg2OTgtMDI3MGY2OWQzMDE2XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e914e2b66c76e06cc64988b"},"Title":"Fast & Furious","Genre":"Action, Thriller","Released":"03 Apr 2009","Actors":"Vin Diesel, Paul Walker, Jordana Brewster, Michelle Rodriguez","Poster":"https://m.media-amazon.com/images/M/MV5BYjQ1ZTMxNzgtZDcxOC00NWY5LTk3ZjAtYzRhMDhlNDZlOWEzXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e91524f66c76e06cc64988c"},"Title":"Pirates of the Caribbean: The Curse of the Black Pearl","Genre":"Action, Adventure, Fantasy","Released":"09 Jul 2003","Actors":"Johnny Depp, Geoffrey Rush, Orlando Bloom, Keira Knightley","Poster":"https://m.media-amazon.com/images/M/MV5BNGYyZGM5MGMtYTY2Ni00M2Y1LWIzNjQtYWUzM2VlNGVhMDNhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e91525366c76e06cc64988d"},"Title":"Pirates of the Caribbean: Dead Man's Chest","Genre":"Action, Adventure, Fantasy","Released":"07 Jul 2006","Actors":"Johnny Depp, Orlando Bloom, Keira Knightley, Jack Davenport","Poster":"https://m.media-amazon.com/images/M/MV5BMTcwODc1MTMxM15BMl5BanBnXkFtZTYwMDg1NzY3._V1_SX300.jpg","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e91525566c76e06cc64988e"},"Title":"Pirates of the Caribbean: On Stranger Tides","Genre":"Action, Adventure, Fantasy","Released":"20 May 2011","Actors":"Johnny Depp, Penélope Cruz, Geoffrey Rush, Ian McShane","Poster":"https://m.media-amazon.com/images/M/MV5BMjE5MjkwODI3Nl5BMl5BanBnXkFtZTcwNjcwMDk4NA@@._V1_SX300.jpg","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e91525766c76e06cc64988f"},"Title":"The Pirates! Band of Misfits","Genre":"Animation, Adventure, Comedy, Family","Released":"27 Apr 2012","Actors":"Hugh Grant, Martin Freeman, Imelda Staunton, David Tennant","Poster":"https://m.media-amazon.com/images/M/MV5BNDhkOGZkZWMtNGI4Mi00ZWI3LTgyYTgtMDU4ZDI3NTNjMWFiXkEyXkFqcGdeQXVyNjk1Njg5NTA@._V1_SX300.jpg","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e91532366c76e06cc649890"},"Title":"Avatar: The Last Airbender","Genre":"Animation, Action, Adventure, Family, Fantasy, Mystery","Released":"21 Feb 2005","Actors":"Dee Bradley Baker, Zach Tyler, Jack De Sena, Mae Whitman","Poster":"https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIxLWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_SX300.jpg","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e91532f66c76e06cc649891"},"Title":"The SpongeBob Movie: Sponge Out of Water","Genre":"Animation, Adventure, Comedy, Family, Fantasy","Released":"06 Feb 2015","Actors":"Antonio Banderas, Eric Bauza, Tim Conway, Eddie Deezen","Poster":"https://m.media-amazon.com/images/M/MV5BMjYyNDczNTE0MF5BMl5BanBnXkFtZTgwNjkzNDYxMzE@._V1_SX300.jpg","__v":{"$numberInt":"0"}}
