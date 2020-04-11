@@ -1,0 +1,12 @@
+version: "3"
+services:
+    frontend:
+        container_name: catalog-frontend
+        build:
+            context: ./catalog-frontend
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        volumes:
+            - ./catalog-frontend:/public
+ 

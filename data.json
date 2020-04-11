@@ -1,0 +1,5 @@
+{"_id":{"$oid":"5e909906cea30d09003e4fae"},"title":"teste","genre":"teste111","releaseDate":"10/20/2019","mainActors":"Ator 1, Ator 2","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e90992dcea30d09003e4faf"},"title":"teste","genre":"teste111","releaseDate":"10/20/2019","mainActors":"Ator 1, Ator 2","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e909946e7851a1fe83b0fb7"},"title":"teste","genre":"teste111","releaseDate":"10/20/2019","mainActors":"Ator 1, Ator 2","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e90994be7851a1fe83b0fb8"},"title":"teste","genre":"teste1111","releaseDate":"10/20/2019","mainActors":"Ator 1, Ator 2","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5e90994ee7851a1fe83b0fb9"},"title":"teste","genre":"teste1114","releaseDate":"10/20/2019","mainActors":"Ator 1, Ator 2","__v":{"$numberInt":"0"}}

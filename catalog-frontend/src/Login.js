@@ -10,14 +10,12 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+// import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 
 import api from 'services/api';
-
-// import './App.css';
 
 // http://www.omdbapi.com/?i=tt3896198&apikey=149aa91b
 
@@ -120,8 +118,9 @@ function Login(){
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
+              <Link href="/video-catalog">
               <Button
-                type="submit"
+               // type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
@@ -129,6 +128,7 @@ function Login(){
               >
                 Sign In
               </Button>
+              </Link>
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
