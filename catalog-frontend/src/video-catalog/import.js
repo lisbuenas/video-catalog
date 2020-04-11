@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import TextField from '@material-ui/core/TextField';
-import { Button, Input, Card } from '@material-ui/core';
+import { Button, Input, Card, Grid, CardContent, CardActionArea } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -10,11 +10,12 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import api from 'services/api';
 
 function VideoImport({id, openImportModal, setOpenImportModal}){
-
     const [search, setSearch] = useState('');
     const [videoList, setVideoList] = useState([]);
     const [videoData, setVideoData] = useState([]);
     const [searching, setSearching] = useState(false);
+    const [selectedMovie, setSelectedMovie] = useState(false);
+    
 
     async function searchVideo(e = null){
         e && e.preventDefault();
@@ -37,6 +38,7 @@ function VideoImport({id, openImportModal, setOpenImportModal}){
             let res = await api.get(`http://www.omdbapi.com/?apikey=149aa91b&i=${imdbID}`);
             if(res.data)
             setVideoData(res.data);
+            setSelectedMovie(true);
         }catch(err){
             console.log(err);
         }finally{
@@ -85,55 +87,87 @@ function VideoImport({id, openImportModal, setOpenImportModal}){
     
 
     return (
-        <Dialog open={openImportModal} aria-labelledby="about-movie-dialog">
+        <Dialog open={openImportModal} aria-labelledby="about-movie-dialog" maxWidth="lg">
         <DialogTitle id="about-movie-dialog">Add movie</DialogTitle>
-
-
-
         <DialogContent>
 
-<form onSubmit={searchVideo}>
-
-        <Input  value={search||''} onChange={e => setSearch(e.target.value)}/><Button onClick={()=>searchVideo()}>Search</Button>
-        </form>
-        {videoList.map((el,index) => <Card key={index}>
-            <div onClick={()=> searchById(el.imdbID)}>Detalhes</div>
-            {el.Title}
-        </Card>)}
-            
-
+        <Grid container>
+            <Grid item md={4}>
+            <form onSubmit={searchVideo}>
             <TextField
+                label="Type title" value={search||''} onChange={e => setSearch(e.target.value)}
+                fullWidth
+            />
+            <Button onClick={()=>searchVideo()}>Search</Button>
+            </form>
+        {videoList.map((el,index) => <Card key={index} onClick={()=> searchById(el.imdbID)}>
+        <CardActionArea>
+            <CardContent>
+            {el.Title}
+            </CardContent>
+            </CardActionArea>
+            </Card>)}
+        </Grid>
+
+        <Grid item md={8}>
+        <Grid container>
+            { selectedMovie && <Grid item md={8} s={2}>
+                <TextField
                 value={videoData.Title || ''}
+                label="Title"
                 onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,title:value}));}}
                 fullWidth
             />
+
             <TextField
                 value={videoData.Genre || ''}
-                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,genre:value}));}}
-                fullWidth
-            />
-            <TextField
-                value={videoData.ReleaseDate || ''}
-                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,releaseDate:value}));}}
-                fullWidth
-            />
-            <TextField
-                value={videoData.MainActors || ''}
-                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,mainActors:value}));}}
+                label="Genre"
+                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,Genre:value}));}}
                 fullWidth
             />
 
             <TextField
-                value={videoData.summarizedPlot || ''}
-                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,summarizedPlot:value}));}}
+                value={videoData.Released || ''}
+                label="Release date"
+                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,Released:value}));}}
                 fullWidth
             />
+
+            <TextField
+                value={videoData.Actors || ''}
+                label="Main actors"
+                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,Actors:value}));}}
+                fullWidth
+            />
+
+            <TextField
+                value={videoData.Plot || ''}
+                label="Summarized plot"
+                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,Plot:value}));}}
+                fullWidth
+            />
+
              <TextField
                 value={videoData.youtubeTrailer || ''}
+                label="Youtube URL trailer"
                 onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,youtubeTrailer:value}));}}
                 fullWidth
             />
-          
+
+            <TextField
+                value={videoData.Poster || ''}
+                label="Poster"
+                onChange={({ target: { value } })  => {setVideoData(prev => ({...prev,Poster:value}));}}
+                fullWidth
+            />
+            </Grid>}
+            <Grid item md={4}>
+                <img width="100%" src={videoData.Poster || 'https://via.placeholder.com/300x444?text=Poster'} />
+            </Grid>
+            </Grid>
+        </Grid>
+        </Grid>
+         
         </DialogContent>
         <DialogActions>
           <Button color="primary" onClick={() =>setOpenImportModal(false)}>

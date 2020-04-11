@@ -10,14 +10,13 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-// import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { useHistory } from 'react-router-dom';
 
 import api from 'services/api';
 
-// http://www.omdbapi.com/?i=tt3896198&apikey=149aa91b
 
 function Copyright() {
   return (
@@ -66,16 +65,20 @@ const useStyles = makeStyles((theme) => ({
 
 
 function Login(){
+    const history = useHistory();
     const classes = useStyles();
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
   
   
-    async function login(){
+    async function login(e = null){
+      e && e.preventDefault();
+
       try{
         api.post('login', {username:username, password, password});
+        history.push('/video-catalog');
       }catch(err){
-  
+        console.log(err);
       }
     }
   
@@ -89,15 +92,13 @@ function Login(){
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate onSubmit={login}>
               <TextField
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
-                id="email"
                 label="Email Address"
-                name="email"
                 autoComplete="email"
                 onChange={e=>{setUsername(e.value); console.log(e.target.value);}}
                 autoFocus
@@ -107,10 +108,8 @@ function Login(){
                 margin="normal"
                 required
                 fullWidth
-                name="password"
                 label="Password"
                 type="password"
-                id="password"
                 autoComplete="current-password"
                 onChange={e=>{setPassword(e.value); console.log(e.target.value);}}
               />
@@ -118,9 +117,9 @@ function Login(){
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              <Link href="/video-catalog">
+              
               <Button
-               // type="submit"
+                type="submit"
                 fullWidth
                 variant="contained"
                 color="primary"
@@ -128,7 +127,7 @@ function Login(){
               >
                 Sign In
               </Button>
-              </Link>
+              
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">

@@ -3,14 +3,14 @@ const router = express.Router();
 
 const video_controller = require('../controllers/video.controller');
 
-router.get('/', verifyJWT, video_controller.index);
+router.get('/', video_controller.index);
 router.get('/:id', video_controller.show);
 router.post('/', video_controller.create);
 router.put('/:id', video_controller.update);
 module.exports = router;
 
 
-//função que verifica se o JWT é ok
+
 function verifyJWT(req, res, next){ 
     var token = req.headers['x-access-token']; 
     if (!token) 

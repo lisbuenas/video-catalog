@@ -50,12 +50,7 @@ function VideoEdit({id, openModal, setOpenModal}){
     
 
     return <>
-        Title
-        Genre
-        Release date
-        Main actors,
-        Summarized plot
-        Youtube trailer
+
         <Dialog open={openModal} aria-labelledby="about-movie-dialog">
         <DialogTitle id="about-movie-dialog">About movie</DialogTitle>
         <DialogContent>

@@ -11,11 +11,12 @@ import {
 import Login from 'Login';
 import VideoEdit from 'video-catalog/edit';
 import VideoCatalog from 'video-catalog';
-
+import Header from 'components/Header';
 
 function App() {
  return(<Router>
-  <div>
+  <>
+    <Header/>
     <Switch>
       <Route path="/video-catalog">
         <VideoCatalog />
@@ -27,7 +28,7 @@ function App() {
         <Login/>
       </Route>
     </Switch>
-  </div>
+  </>
 </Router>)
 }
 

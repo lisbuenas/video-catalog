@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import { Card, Button } from '@material-ui/core';
+import { Card, Button, Grid } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
 
 import VideoEdit from './edit';
@@ -40,26 +40,48 @@ function VideoCatalog(){
         setOpenImportModal(true);
     }
 
-    return (   <>
+    return (<>
 
         <VideoEdit openModal={openModal} setOpenModal={setOpenModal} id={id} />
         <VideoImport openImportModal={openImportModal} setOpenImportModal={setOpenImportModal}/>
 
-        {loading && <Skeleton animation="wave" />}
+        <Grid container>
+            <Grid item xs={1}></Grid>
+            <Grid>{loading && <Skeleton animation="wave" />}
+            <Grid item xs={10}>
 
-        {!loading &&  videoList.map((el,index) =>
-        <Card key={index}>
-            {el.title}
-            {el.genre}
-            {el.poster && <img src={el.poster}/>}
+        <Grid container>
+            <Grid item md={1}>
+                My Channel
+            </Grid>
+            <Grid item md={10}>
+            Search your movie
+            </Grid>
+            <Grid item md={1}>
+                My Channel
+            </Grid>
+        </Grid>
+                
+                {!loading &&  videoList.map((el,index) =>
+                <Card key={index}>
+                    {el.title}
+                    {el.genre}
+                    {el.poster && <img src={el.poster}/>}
 
-            <div onClick={() => editModal(el._id)}>Editar</div>
-        </Card>)
-        }
-
-        <Button onClick={()=>editModal()}>Add new</Button>
-        <Button onClick={()=>importModal()}>Import from IMDB API</Button>
-
+                    <div onClick={() => editModal(el._id)}>Editar</div>
+                </Card>)
+                }
+                <Button onClick={()=>editModal()}>Add new</Button>
+                <Button onClick={()=>importModal()}>Import from IMDB API</Button>
+                </Grid>
+            </Grid>
+            <Grid item xs={1}></Grid>
+            </Grid>
+            <Grid container>
+                <Grid item xs={1}></Grid>
+                <Grid item xs={10}>About</Grid>
+                <Grid item xs={1}></Grid>
+            </Grid>
     </>)
 
 }
