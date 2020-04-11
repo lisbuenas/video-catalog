@@ -1,4 +1,5 @@
 version: "3"
+
 services:
     frontend:
         container_name: catalog-frontend
@@ -7,6 +8,42 @@ services:
             dockerfile: Dockerfile
         ports:
             - "3000:3000"
+        stdin_open: true
+        tty: true
         volumes:
-            - ./catalog-frontend:/public
+            - ./catalog-frontend:/app
  
+    backend:
+        build: catalog-backend
+        ports:
+            - "8000:8000"
+        stdin_open: true
+        tty: true
+        links:
+            - mongodb
+        volumes:
+            - ./catalog-backend:/usr/src/app
+        depends_on:
+            - mongodb
+
+    mongodb:
+        image: mongo
+        ports:
+            # - "27018:27018"
+            - "27017:27017"
+    mongo-seed:
+        build: ./mongo-seed
+        links:
+            - mongodb
+        # environment:
+        # NODE_ENV: development
+    #depends_on:
+    #  - db
+    #links:
+    #  - db
+    #ports:
+    #  - '9000:9000'
+    
+networks:
+    webappnetwork:
+        driver: bridge

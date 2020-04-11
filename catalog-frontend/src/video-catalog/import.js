@@ -16,7 +16,9 @@ function VideoImport({id, openImportModal, setOpenImportModal}){
     const [videoData, setVideoData] = useState([]);
     const [searching, setSearching] = useState(false);
 
-    async function searchVideo(){
+    async function searchVideo(e = null){
+        e && e.preventDefault();
+        
         setSearching(true);
         try{
             let res = await api.get(`http://www.omdbapi.com/?i=tt3896198&apikey=149aa91b&s=${search}`);
@@ -90,9 +92,10 @@ function VideoImport({id, openImportModal, setOpenImportModal}){
 
         <DialogContent>
 
+<form onSubmit={searchVideo}>
 
         <Input  value={search||''} onChange={e => setSearch(e.target.value)}/><Button onClick={()=>searchVideo()}>Search</Button>
-
+        </form>
         {videoList.map((el,index) => <Card key={index}>
             <div onClick={()=> searchById(el.imdbID)}>Detalhes</div>
             {el.Title}

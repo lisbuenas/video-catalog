@@ -1,6 +1,7 @@
 var Video = require('../models/videos.model');
 
 exports.index = function (req, res) {
+
     Video.find(function (err, posts) {
         return res.send({data: posts});
     });
@@ -18,22 +19,7 @@ exports.update = async function (req, res) {
 
     Video.findOneAndUpdate({_id:req.params.id}, req.body, function (err, place) {
         res.send(place);
-      });
-
-      /*
-    let video = await Video.findById(req.params.id);
-
-    // res.send(video);
-
-    video.update(req.body);
-    try{
-        await video.save();
-        return video;
-    }catch(err){
-        console.log(err);
-    }
-*/
-
+    });
 
 }
 
