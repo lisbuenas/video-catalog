@@ -1,107 +1,120 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 
-import { Card, Button, Grid, CardActionArea } from '@material-ui/core';
-import Skeleton from '@material-ui/lab/Skeleton';
+import { Card, Button, Grid, CardActionArea, Input } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 
-import VideoEdit from './edit';
-import api from 'services/api';
-import VideoImport from './import';
-import Player from './player';
+import api from "services/api";
 
-function VideoCatalog(){
-    const [videoList, setVideoList] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [openModal, setOpenModal] = useState(false);
-    const [openImportModal, setOpenImportModal] = useState(false);
-    const [id, setId] = useState(null);
+import VideoEdit from "./edit";
+import VideoImport from "./import";
+import Player from "./player";
+import CardVideo from "./card-video";
+import Sidemenu from "partials/Sidemenu";
 
-    useEffect(()=>{
-        setLoading(true);
-        listCatalog();
-    },[]);
+function VideoCatalog() {
+  const [videoList, setVideoList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [openPlayerModal, setOpenPlayerModal] = useState(false);
+  const [openImportModal, setOpenImportModal] = useState(false);
+  const [id, setId] = useState(null);
+  const [search, setSearch] = useState("");
+  const [zeroResults, setZeroResults] = useState(false);
+  const [videoUrl, setVideoUrl] = useState("");
 
-    async function listCatalog(){
-        setLoading(true);
-        try{
-            let response = await api.get('videos');
-            setVideoList(response.data.data);
-        }catch(err){
-            console.log(err);
-        }finally{
-            setLoading(false);
-        }
+  useEffect(() => {
+    setLoading(true);
+    listCatalog();
+  }, []);
+
+  async function listCatalog(e = null) {
+    e && e.preventDefault();
+    setLoading(true);
+    try {
+      let response = await api.get(`videos?search=${search}`);
+      if (response.data.data.length > 0) {
+        setZeroResults(false);
+        setVideoList(response.data.data);
+      } else {
+        setVideoList([]);
+        setZeroResults(true);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
     }
+  }
 
-    function editModal(id = null){
-        setId(id);
-        setOpenModal(true);
-    }
+  function editModal(id = null) {
+    setId(id);
+    setOpenModal(true);
+  }
 
-    function importModal(){
-        setOpenImportModal(true);
-    }
+  function importModal() {
+    setOpenImportModal(true);
+  }
 
-    return (<>
+  function openPlayer(videoUrl = null) {
+    setVideoUrl(videoUrl);
+    setOpenPlayerModal(true);
+  }
 
-        <VideoEdit openModal={openModal} setOpenModal={setOpenModal} id={id} />
-        <VideoImport openImportModal={openImportModal} setOpenImportModal={setOpenImportModal}/>
-        <Player/>
+  return (
+    <>
+      <VideoEdit openModal={openModal} setOpenModal={setOpenModal} id={id} />
+      <VideoImport
+        openImportModal={openImportModal}
+        listCatalog={listCatalog}
+        setOpenImportModal={setOpenImportModal}
+      />
+      <Player
+        openPlayerModal={openPlayerModal}
+        setOpenPlayerModal={setOpenPlayerModal}
+        videoUrl={videoUrl}
+      />
 
-        
-        <Grid container>
-            <Grid item xs={1}></Grid>
-            {loading && <Skeleton animation="wave" />}
-            <Grid item xs={10}>
-            <Grid container style={{height:'120px'}}>
-                <Grid item md={1}>
-                    My Channel
-                </Grid>
-                <Grid item md={10}>
-                    Search your movie
-                </Grid>
-                <Grid item md={1}>
-                    My Channel
-                </Grid>
+      <Grid container>
+        <Grid item xs={1}></Grid>
+        {loading && <Skeleton animation="wave" />}
+        <Grid item xs={10}>
+          <Grid container style={{ height: "120px" }}>
+            <Grid item md={1}>
+              My Channel
             </Grid>
-                
-                <Grid container>
-                    <Grid item xs={4}>
-                        <Button onClick={()=>editModal()}>Add new</Button>
-                        <Button onClick={()=>importModal()}>Import from IMDB API</Button>
-                    </Grid>
-
-                    <Grid item xs={8}>
-                        <Grid container>
-                    {!loading &&  videoList.map((el,index) =>
-                        <Grid item xs={4} key={index} p={2} >
-                        <Card style={{margin:'2px', height:'200px', backgroundImage: 'url('+el.Poster+')', backgroundSize:'cover', borderBottom:'3px solid '+'#'+Math.random().toString(16).substr(-6)}}>
-                            
-                        <CardActionArea>
-                            {el.Title}
-                            {el.Genre}
-
-                            <div onClick={() => editModal(el._id)}>Editar</div>
-
-                            </CardActionArea>
-                        </Card> </Grid>)
-                        }
-                       </Grid>
-                        
-                    </Grid>
-
-                </Grid>
-
-
-                </Grid>
-            
-            <Grid item xs={1}></Grid>
+            <Grid item md={10}>
+              <form onSubmit={listCatalog}>
+                <Input onChange={(e) => setSearch(e.target.value)} />
+              </form>
             </Grid>
-            <Grid container>
-                <Grid item xs={1}></Grid>
-                <Grid item xs={10}>About</Grid>
-                <Grid item xs={1}></Grid>
+            <Grid item md={1}>
+              My Channel
             </Grid>
-    </>)
+          </Grid>
 
+          <Grid container>
+            <Sidemenu editModal={editModal} importModal={importModal} />
+            <Grid item xs={8}>
+              <Grid container>
+                {!loading &&
+                  videoList.map((el, index) => {
+                    return (
+                      <CardVideo
+                        key={index}
+                        video={el}
+                        editModal={editModal}
+                        openPlayer={openPlayer}
+                      />
+                    );
+                  })}
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={1}></Grid>
+      </Grid>
+    </>
+  );
 }
 export default VideoCatalog;
