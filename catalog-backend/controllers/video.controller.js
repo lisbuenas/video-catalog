@@ -2,17 +2,17 @@ var Video = require("../models/videos.model");
 
 exports.index = function (req, res) {
   let search = req.query.search;
-  //if (search) {
-  Video.find({ Title: { $regex: search, $options: "i" } }, function (
-    err,
-    posts
-  ) {
-    return res.send({ data: posts });
-  });
-  /*} else
+  if (search) {
+    Video.find({ Title: { $regex: search, $options: "i" } }, function (
+      err,
+      posts
+    ) {
+      return res.send({ data: posts });
+    });
+  } else
     Video.find(function (err, posts) {
       return res.send({ data: posts });
-    });*/
+    });
 };
 
 exports.show = function (req, res) {
