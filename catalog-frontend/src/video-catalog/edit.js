@@ -11,8 +11,9 @@ import {
 
 import api from "services/api";
 
-function VideoEdit({ id, openModal, setOpenModal }) {
+function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
   const [videoData, setVideoData] = useState([]);
+  const [openRemoveModal, setOpenRemoveModal] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -46,11 +47,39 @@ function VideoEdit({ id, openModal, setOpenModal }) {
     setOpenModal(false);
   }
 
+  async function removeVideo() {
+    try {
+      await api.delete("videos/" + id);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setOpenRemoveModal(false);
+      listCatalog();
+      setOpenModal(false);
+    }
+  }
+
   return (
     <>
+      <Dialog open={openRemoveModal}>
+        <DialogTitle id="about-movie-dialog">
+          Remove movie from catalog?
+        </DialogTitle>
+        <DialogContent></DialogContent>
+        <DialogActions>
+          <Button color="primary" onClick={() => setOpenRemoveModal(false)}>
+            Cancel
+          </Button>
+          <Button color="primary" onClick={() => removeVideo()}>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       <Dialog open={openModal} aria-labelledby="about-movie-dialog">
         <DialogTitle id="about-movie-dialog">
-          About movie <Button>Remove</Button>
+          About movie{" "}
+          <Button onClick={() => setOpenRemoveModal(true)}>Remove</Button>
         </DialogTitle>
         <DialogContent>
           <TextField

@@ -16,9 +16,7 @@ function CardVideo(props) {
         }}
       >
         <CardActionArea>
-          <div onClick={() => props.openPlayer(el.youtubeVideo)}>
-            Ver trailer
-          </div>
+          <div onClick={() => props.openPlayer(el)}>Ver trailer</div>
           {el.Title}
           {el.Genre}
           <div onClick={() => props.editModal(el._id)}>Editar</div>

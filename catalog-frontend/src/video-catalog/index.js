@@ -21,6 +21,7 @@ function VideoCatalog() {
   const [search, setSearch] = useState("");
   const [zeroResults, setZeroResults] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
+  const [videoData, setVideoData] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -55,14 +56,21 @@ function VideoCatalog() {
     setOpenImportModal(true);
   }
 
-  function openPlayer(videoUrl = null) {
-    setVideoUrl(videoUrl);
+  function openPlayer(videoData = null) {
+    console.log(videoData);
+    setVideoUrl(videoData);
+    setVideoData(videoData);
     setOpenPlayerModal(true);
   }
 
   return (
     <>
-      <VideoEdit openModal={openModal} setOpenModal={setOpenModal} id={id} />
+      <VideoEdit
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        listCatalog={listCatalog}
+        id={id}
+      />
       <VideoImport
         openImportModal={openImportModal}
         listCatalog={listCatalog}
@@ -71,7 +79,7 @@ function VideoCatalog() {
       <Player
         openPlayerModal={openPlayerModal}
         setOpenPlayerModal={setOpenPlayerModal}
-        videoUrl={videoUrl}
+        videoData={videoData}
       />
 
       <Grid container>
@@ -92,9 +100,12 @@ function VideoCatalog() {
             </Grid>
           </Grid>
 
-          <Grid container>
+          <Grid container style={{ position: "relative" }}>
             <Sidemenu editModal={editModal} importModal={importModal} />
-            <Grid item xs={8}>
+            <Grid
+              item
+              style={{ position: "relative", width: "calc( 100% - 250px)" }}
+            >
               <Grid container>
                 {!loading &&
                   videoList.map((el, index) => {
