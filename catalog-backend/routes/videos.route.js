@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
-const video_controller = require("../controllers/video.controller");
+const videoController = require("../controllers/video.controller");
 
-router.get("/", video_controller.index);
-router.get("/:id", video_controller.show);
-router.post("/", video_controller.create);
-router.put("/:id", video_controller.update);
-router.delete("/:id", video_controller.delete);
+router.get("/", videoController.index);
+router.get("/:id", videoController.show);
+router.post("/", videoController.create);
+router.put("/:id", videoController.update);
+router.delete("/:id", videoController.delete);
 module.exports = router;
 
 function verifyJWT(req, res, next) {
