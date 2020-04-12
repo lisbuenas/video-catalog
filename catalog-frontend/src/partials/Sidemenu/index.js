@@ -14,7 +14,12 @@ function Sidemenu(props) {
       }}
     >
       <div
-        style={{ display: "inline-block", textAlign: "center", width: "100%" }}
+        style={{
+          display: "inline-block",
+          textAlign: "center",
+          width: "100%",
+          marginTop: "50px",
+        }}
       >
         <TheatersIcon
           style={{
@@ -26,9 +31,10 @@ function Sidemenu(props) {
           color="light"
         />
       </div>
-      <Button color="primary" onClick={() => props.editModal()}>
+      my favorite vídeos
+      {/* <Button color="primary" onClick={() => props.editModal()}>
         Add new
-      </Button>
+      </Button> */}
       <Button color="primary" onClick={() => props.importModal()}>
         Import from IMDB API
       </Button>

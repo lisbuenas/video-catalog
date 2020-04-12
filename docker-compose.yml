@@ -54,6 +54,13 @@ services:
     links:
       - mongodb
 
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+    ports:
+      - "5000:80"
+
 networks:
   webappnetwork:
     driver: bridge
