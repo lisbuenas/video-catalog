@@ -1,4 +1,4 @@
-var Video = require("../models/videos.model");
+const Video = require("../models/videos.model");
 
 exports.index = function (req, res) {
   let search = req.query.search;

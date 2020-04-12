@@ -1,18 +1,48 @@
 version: "3"
 
 services:
+  frontend:
+    container_name: catalog-frontend
+    build:
+      context: ./catalog-frontend
+      dockerfile: Dockerfile
+    environment:
+      - PORT=${REACT_APP_PORT}
+    expose:
+      - ${REACT_APP_PORT}
+    ports:
+      - ${REACT_APP_PORT}:${REACT_APP_PORT}
+    stdin_open: true
+    links:
+      - backend
+    tty: true
+    volumes:
+      - ./catalog-frontend:/app
+    depends_on:
+      - backend
+    networks:
+      - webappnetwork
+
   backend:
     build: catalog-backend
+    expose:
+      - ${APP_SERVER_PORT}
+    environment:
+      API_HOST: ${API_HOST}
+      APP_SERVER_PORT: ${APP_SERVER_PORT}
     ports:
-      - "8000:8000"
+      - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
     links:
       - mongodb
     stdin_open: true
     tty: true
     volumes:
       - ./catalog-backend:/usr/src/app
+      - /usr/src/app/node_modules/
     depends_on:
       - mongodb
+    networks:
+      - webappnetwork
 
   mongodb:
     image: mongo
@@ -23,6 +53,10 @@ services:
     build: ./mongo-seed
     links:
       - mongodb
+
+networks:
+  webappnetwork:
+    driver: bridge
   # environment:
   # NODE_ENV: development
   #depends_on:
