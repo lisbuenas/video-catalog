@@ -10,6 +10,7 @@ import VideoImport from "./import";
 import Player from "./player";
 import CardVideo from "./card-video";
 import Sidemenu from "partials/Sidemenu";
+import TopSearch from "partials/TopSearch";
 
 function VideoCatalog() {
   const [videoList, setVideoList] = useState([]);
@@ -86,20 +87,7 @@ function VideoCatalog() {
         <Grid item xs={1}></Grid>
         {loading && <Skeleton animation="wave" />}
         <Grid item xs={10}>
-          <Grid container style={{ height: "120px" }}>
-            <Grid item md={1}>
-              My Channel
-            </Grid>
-            <Grid item md={10}>
-              <form onSubmit={listCatalog}>
-                <Input onChange={(e) => setSearch(e.target.value)} />
-              </form>
-            </Grid>
-            <Grid item md={1}>
-              My Channel
-            </Grid>
-          </Grid>
-
+          <TopSearch />
           <Grid container style={{ position: "relative" }}>
             <Sidemenu editModal={editModal} importModal={importModal} />
             <Grid

@@ -41,6 +41,7 @@ exports.create = function (req, res) {
     Plot: req.body.Plot,
     Poster: req.body.Poster,
     youtubeTrailer: req.body.youtubeTrailer,
+    imdbRating: req.body.imdbRating,
   });
   video.save(function (err) {
     if (err) {

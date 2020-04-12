@@ -45,6 +45,7 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
       }
     }
     setOpenModal(false);
+    listCatalog();
   }
 
   async function removeVideo() {
@@ -133,10 +134,10 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
           />
         </DialogContent>
         <DialogActions>
-          <Button color="primary" onClick={() => setOpenModal(false)}>
+          <Button color="secondary" onClick={() => setOpenModal(false)}>
             Cancel
           </Button>
-          <Button color="primary" onClick={() => saveDetail()}>
+          <Button color="secondary" onClick={() => saveDetail()}>
             Save
           </Button>
         </DialogActions>

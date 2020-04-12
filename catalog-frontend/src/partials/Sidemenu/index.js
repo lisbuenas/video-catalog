@@ -13,7 +13,9 @@ function Sidemenu(props) {
         backgroundColor: "#2C97DF",
       }}
     >
-      <div>
+      <div
+        style={{ display: "inline-block", textAlign: "center", width: "100%" }}
+      >
         <TheatersIcon
           style={{
             fontSize: "50px",
@@ -24,8 +26,12 @@ function Sidemenu(props) {
           color="light"
         />
       </div>
-      <Button onClick={() => props.editModal()}>Add new</Button>
-      <Button onClick={() => props.importModal()}>Import from IMDB API</Button>
+      <Button color="primary" onClick={() => props.editModal()}>
+        Add new
+      </Button>
+      <Button color="primary" onClick={() => props.importModal()}>
+        Import from IMDB API
+      </Button>
     </Grid>
   );
 }

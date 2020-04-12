@@ -73,7 +73,11 @@ function Login() {
     e && e.preventDefault();
 
     try {
-      api.post("login", { username: username, password, password });
+      api.post("users/authenticate", {
+        username: username,
+        password,
+        password,
+      });
 
       localStorage.setItem("token", "aasd");
       dispatch({

@@ -215,10 +215,10 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button color="primary" onClick={() => setOpenImportModal(false)}>
+        <Button color="secondary" onClick={() => setOpenImportModal(false)}>
           Cancel
         </Button>
-        <Button color="primary" onClick={() => saveDetail()}>
+        <Button color="secondary" onClick={() => saveDetail()}>
           Save
         </Button>
       </DialogActions>

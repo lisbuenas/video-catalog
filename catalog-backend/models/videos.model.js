@@ -9,6 +9,8 @@ let VideoSchema = new Schema(
     Actors: { type: String, required: false },
     youtubeTrailer: { type: String, required: false },
     Poster: { type: String, required: false },
+    Plot: { type: String, required: false },
+    imdbRating: { type: Number },
   },
   { collection: "videos" }
 );
