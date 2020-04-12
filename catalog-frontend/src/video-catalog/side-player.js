@@ -145,7 +145,7 @@ function SidePlayer({ openPlayerModal, videoData }) {
                 textAnchor="middle"
                 dominantBaseline="middle"
               >
-                {(data && videoData.imdbRating) || "no rating"}
+                {(data && "IMDB " + videoData.imdbRating) || "no rating"}
               </text>
             </PieChart>
           </ResponsiveContainer>

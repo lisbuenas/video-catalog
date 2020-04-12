@@ -16,11 +16,11 @@ const StyledDialog = styled(Dialog)`
 
 function Player({ setOpenPlayerModal, openPlayerModal, videoData }) {
   let data = videoData;
-  /*const [updateCount, setUpdateCount] = useState(0);
+  const [found, setFound] = useState(false);
 
   useEffect(() => {
-    setUpdateCount(updateCount + 1);
-  }, [videoData]);*/
+    setFound(false);
+  }, [videoData]);
 
   return (
     <>
@@ -60,12 +60,28 @@ function Player({ setOpenPlayerModal, openPlayerModal, videoData }) {
           }}
         >
           <ReactPlayer
+            onReady={() => {
+              setFound(true);
+              console.log("Found!");
+            }}
+            onError={() => {
+              setFound(false);
+              console.log("Not found");
+            }}
             width="100%"
             height="100%"
             style={{ width: "60vh" }}
-            url={data && data.youtubeTrailer}
+            url={data.youtubeTrailer}
             playing
           />
+
+          {!found && (
+            <img
+              style={{ position: "absolute", top: "65px" }}
+              alt="Not found"
+              src="/not-found.jpg"
+            />
+          )}
         </DialogContent>
       </StyledDialog>
 
