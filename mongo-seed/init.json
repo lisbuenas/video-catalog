@@ -1,49 +1,15 @@
 [
   {
-    "_id": { "$oid": "5e90992dcea30d09003e4faf" },
-    "title": "testeGuardians of the Galaxy Vol. 2",
-    "genre": "Action, Adventure, Comedy, Sci-Fi",
-    "releaseDate": "10/20/2019",
-    "mainActors": "Ator 1, Ator 2777, Ator 23",
-    "youtubeVideo": "https://www.youtube.com/watch?v=wUn05hdkhjM",
-    "poster": "https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg",
-    "__v": { "$numberInt": "0" }
-  },
-  {
-    "_id": { "$oid": "5e914e0666c76e06cc649887" },
-    "Title": "Fast & Furious 6",
-    "Genre": "Action, Adventure, Thriller",
-    "Released": "24 May 2013",
-    "Actors": "Vin Diesel, Paul Walker, Dwayne Johnson, Jordana Brewster",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BMTM3NTg2NDQzOF5BMl5BanBnXkFtZTcwNjc2NzQzOQ@@._V1_SX300.jpg",
-    "__v": { "$numberInt": "0" }
-  },
-  {
-    "_id": { "$oid": "5e914e0d66c76e06cc649888" },
-    "Title": "Fast Times at Ridgemont High",
-    "Genre": "Comedy, Drama",
-    "Released": "13 Aug 1982",
-    "Actors": "Sean Penn, Jennifer Jason Leigh, Judge Reinhold, Robert Romanus",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BYzBlZjE1MDctYjZmZC00ZTJmLWFkOWEtYjdmZDZkODBkZmI2XkEyXkFqcGdeQXVyNjQ2MjQ5NzM@._V1_SX300.jpg",
-    "__v": { "$numberInt": "0" }
-  },
-  {
-    "_id": { "$oid": "5e914e1866c76e06cc649889" },
-    "Title": "2 Fast 2 Furious",
-    "Genre": "Action, Crime, Thriller",
-    "Released": "06 Jun 2003",
-    "Actors": "Paul Walker, Tyrese Gibson, Eva Mendes, Cole Hauser",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BMzExYjcyYWMtY2JkOC00NDUwLTg2OTgtMDI3MGY2OWQzMDE2XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-    "__v": { "$numberInt": "0" }
-  },
-  {
     "_id": { "$oid": "5e914e1866c76e06cc64988a" },
     "Title": "2 Fast 2 Furious",
     "Genre": "Action, Crime, Thriller",
     "Released": "06 Jun 2003",
     "Actors": "Paul Walker, Tyrese Gibson, Eva Mendes, Cole Hauser",
     "Poster": "https://m.media-amazon.com/images/M/MV5BMzExYjcyYWMtY2JkOC00NDUwLTg2OTgtMDI3MGY2OWQzMDE2XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
-    "__v": { "$numberInt": "0" }
+    "imdbRating": { "$numberDouble": "8.6" },
+    "__v": { "$numberInt": "0" },
+    "Plot": "Plot sample",
+    "youtubeTrailer": "https://www.youtube.com/watch?v=F_VIM03DXWI"
   },
   {
     "_id": { "$oid": "5e914e2b66c76e06cc64988b" },
@@ -52,6 +18,8 @@
     "Released": "03 Apr 2009",
     "Actors": "Vin Diesel, Paul Walker, Jordana Brewster, Michelle Rodriguez",
     "Poster": "https://m.media-amazon.com/images/M/MV5BYjQ1ZTMxNzgtZDcxOC00NWY5LTk3ZjAtYzRhMDhlNDZlOWEzXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
+    "youtubeTrailer": "https://www.youtube.com/watch?v=2TAOizOnNPo",
+    "imdbRating": "9.8",
     "__v": { "$numberInt": "0" }
   },
   {
@@ -61,7 +29,9 @@
     "Released": "09 Jul 2003",
     "Actors": "Johnny Depp, Geoffrey Rush, Orlando Bloom, Keira Knightley",
     "Poster": "https://m.media-amazon.com/images/M/MV5BNGYyZGM5MGMtYTY2Ni00M2Y1LWIzNjQtYWUzM2VlNGVhMDNhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-    "__v": { "$numberInt": "0" }
+    "imdbRating": { "$numberInt": "6" },
+    "__v": { "$numberInt": "0" },
+    "youtubeTrailer": "https://www.youtube.com/watch?v=Hgeu5rhoxxY&t=1s"
   },
   {
     "_id": { "$oid": "5e91525366c76e06cc64988d" },
@@ -70,7 +40,8 @@
     "Released": "07 Jul 2006",
     "Actors": "Johnny Depp, Orlando Bloom, Keira Knightley, Jack Davenport",
     "Poster": "https://m.media-amazon.com/images/M/MV5BMTcwODc1MTMxM15BMl5BanBnXkFtZTYwMDg1NzY3._V1_SX300.jpg",
-    "__v": { "$numberInt": "0" }
+    "imdbRating": { "$numberDouble": "4.8" },
+    "youtubeTrailer": "https://www.youtube.com/watch?v=ozk0-RHXtFw"
   },
   {
     "_id": { "$oid": "5e91525566c76e06cc64988e" },
@@ -79,16 +50,9 @@
     "Released": "20 May 2011",
     "Actors": "Johnny Depp, Penélope Cruz, Geoffrey Rush, Ian McShane",
     "Poster": "https://m.media-amazon.com/images/M/MV5BMjE5MjkwODI3Nl5BMl5BanBnXkFtZTcwNjcwMDk4NA@@._V1_SX300.jpg",
-    "__v": { "$numberInt": "0" }
-  },
-  {
-    "_id": { "$oid": "5e91525766c76e06cc64988f" },
-    "Title": "The Pirates! Band of Misfits",
-    "Genre": "Animation, Adventure, Comedy, Family",
-    "Released": "27 Apr 2012",
-    "Actors": "Hugh Grant, Martin Freeman, Imelda Staunton, David Tennant",
-    "Poster": "https://m.media-amazon.com/images/M/MV5BNDhkOGZkZWMtNGI4Mi00ZWI3LTgyYTgtMDU4ZDI3NTNjMWFiXkEyXkFqcGdeQXVyNjk1Njg5NTA@._V1_SX300.jpg",
-    "__v": { "$numberInt": "0" }
+    "imdbRating": { "$numberInt": "8" },
+    "__v": { "$numberInt": "0" },
+    "youtubeTrailer": "https://www.youtube.com/watch?v=KR_9A-cUEJc"
   },
   {
     "_id": { "$oid": "5e91532366c76e06cc649890" },
@@ -97,7 +61,10 @@
     "Released": "21 Feb 2005",
     "Actors": "Dee Bradley Baker, Zach Tyler, Jack De Sena, Mae Whitman",
     "Poster": "https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIxLWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_SX300.jpg",
-    "__v": { "$numberInt": "0" }
+    "imdbRating": { "$numberInt": "4" },
+    "__v": { "$numberInt": "0" },
+    "Plot": "Sample Plot",
+    "youtubeTrailer": "https://www.youtube.com/watch?v=JbCYXNswL4Y"
   },
   {
     "_id": { "$oid": "5e91532f66c76e06cc649891" },
@@ -106,6 +73,93 @@
     "Released": "06 Feb 2015",
     "Actors": "Antonio Banderas, Eric Bauza, Tim Conway, Eddie Deezen",
     "Poster": "https://m.media-amazon.com/images/M/MV5BMjYyNDczNTE0MF5BMl5BanBnXkFtZTgwNjkzNDYxMzE@._V1_SX300.jpg",
+    "imdbRating": { "$numberInt": "9" },
+    "__v": { "$numberInt": "0" },
+    "youtubeTrailer": "https://www.youtube.com/watch?v=e9awLSibQ80"
+  },
+  {
+    "_id": { "$oid": "5e91b4c0460f4803c4d4cad0" },
+    "Title": "Leaving Las Vegas",
+    "Genre": "Drama, Romance",
+    "Released": "09 Feb 1996",
+    "Actors": "Nicolas Cage, Elisabeth Shue, Julian Sands, Richard Lewis",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BNDg3MDM5NTI0MF5BMl5BanBnXkFtZTcwNDY0NDk0NA@@._V1_SX300.jpg",
+    "imdbRating": "4",
     "__v": { "$numberInt": "0" }
+  },
+  {
+    "_id": { "$oid": "5e91b551460f4803c4d4cad1" },
+    "Title": "Cars",
+    "Genre": "Animation, Comedy, Family, Sport",
+    "Released": "09 Jun 2006",
+    "Actors": "Owen Wilson, Paul Newman, Bonnie Hunt, Larry the Cable Guy",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMTg5NzY0MzA2MV5BMl5BanBnXkFtZTYwNDc3NTc2._V1_SX300.jpg",
+    "imdbRating": { "$numberDouble": "8.4" },
+    "__v": { "$numberInt": "0" },
+    "Plot": "Plot sample cars",
+    "youtubeTrailer": "https://www.youtube.com/watch?v=SbXIj2T-_uk"
+  },
+  {
+    "_id": { "$oid": "5e91b580460f4803c4d4cad3" },
+    "Title": "Cars 2",
+    "Genre": "Animation, Adventure, Comedy, Family, Sport",
+    "Released": "24 Jun 2011",
+    "Actors": "Larry the Cable Guy, Owen Wilson, Michael Caine, Emily Mortimer",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMTUzNTc3MTU3M15BMl5BanBnXkFtZTcwMzIxNTc3NA@@._V1_SX300.jpg",
+    "__v": { "$numberInt": "0" }
+  },
+  {
+    "_id": { "$oid": "5e91b585460f4803c4d4cad4" },
+    "Title": "Cars 3",
+    "Genre": "Animation, Adventure, Comedy, Family, Sport",
+    "Released": "16 Jun 2017",
+    "Actors": "Owen Wilson, Cristela Alonzo, Chris Cooper, Nathan Fillion",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMTc0NzU2OTYyN15BMl5BanBnXkFtZTgwMTkwOTg2MTI@._V1_SX300.jpg",
+    "__v": { "$numberInt": "0" }
+  },
+  {
+    "_id": { "$oid": "5e91cfe0f3aa2809e41f2fa7" },
+    "Title": "Teste di quoio",
+    "Genre": "Comedy",
+    "Released": "N/A",
+    "Actors": "Paolo Baroni, Ken Clark, Roberto Della Casa, Christian De Sica",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BZmZkZTJmNWItZDZhYS00ZDMyLWEyMjctNTM1MDMzM2RhMzM5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQ3Njg3MQ@@._V1_SX300.jpg",
+    "__v": { "$numberInt": "0" },
+    "Plot": "Plot sample",
+    "youtubeTrailer": "https://www.youtube.com/watch?v=UzoCcDMHFfE"
+  },
+  {
+    "_id": { "$oid": "5e9295c6a416be1d904b34f3" },
+    "Title": "Death Race",
+    "Genre": "Action, Adventure, Sci-Fi, Thriller",
+    "Released": "22 Aug 2008",
+    "Actors": "Jason Statham, Joan Allen, Ian McShane, Tyrese Gibson",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BZTA4ODc4YTQtM2YyZS00YTgzLTgyMTAtMTg4Y2Q1YWFmZDYzXkEyXkFqcGdeQXVyNDE5MTU2MDE@._V1_SX300.jpg",
+    "imdbRating": "7.3",
+    "__v": { "$numberInt": "0" }
+  },
+  {
+    "_id": { "$oid": "5e9295f21d5aa83d18f95423" },
+    "Title": "Death Race: Inferno",
+    "Genre": "Action, Crime, Sci-Fi, Thriller",
+    "Released": "20 Jan 2013",
+    "Actors": "Luke Goss, Ving Rhames, Danny Trejo, Dougray Scott",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BNmE3YmI2MTYtMzAwNi00ODQ5LWFhNDQtOWE0MjU3MGFiZWEyXkEyXkFqcGdeQXVyNDQ2MTMzODA@._V1_SX300.jpg",
+    "imdbRating": { "$numberDouble": "5.5" },
+    "__v": { "$numberInt": "0" },
+    "Plot": "Plot sample",
+    "youtubeTrailer": "https://www.youtube.com/watch?v=FFMUtD_FZZM"
+  },
+  {
+    "_id": { "$oid": "5e93173ace90972fa01faba4" },
+    "Title": "Riding in Cars with Boys",
+    "Genre": "Biography, Comedy, Drama",
+    "Released": "19 Oct 2001",
+    "Actors": "Drew Barrymore, Steve Zahn, Adam Garcia, Brittany Murphy",
+    "Plot": "A single mother, with dreams of becoming a writer, has a son at the age of 15 in 1965, and goes through a failed marriage with the drug-addicted father.",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BOGM5MzU5NTgtMmJjZC00Y2E2LThhZGQtMGE5YzUxZTgwZDdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+    "imdbRating": { "$numberDouble": "6.5" },
+    "__v": { "$numberInt": "0" },
+    "youtubeTrailer": "https://www.youtube.com/watch?v=iCxojElPnbg"
   }
 ]
