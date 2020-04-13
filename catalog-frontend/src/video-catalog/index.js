@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import { Card, Button, Grid, CardActionArea, Input } from "@material-ui/core";
-import Skeleton from "@material-ui/lab/Skeleton";
+import {
+  Card,
+  Button,
+  Grid,
+  CardActionArea,
+  Input,
+  Box,
+} from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
 
-import api from "services/api";
+import api from 'services/api';
 
-import VideoEdit from "./edit";
-import VideoImport from "./import";
-import Player from "./player";
-import CardVideo from "./card-video";
-import Sidemenu from "partials/Sidemenu";
-import TopSearch from "partials/TopSearch";
+import VideoEdit from './edit';
+import VideoImport from './import';
+import Player from './player';
+import CardVideo from './card-video';
+import Sidemenu from 'partials/Sidemenu';
+import TopSearch from 'partials/TopSearch';
 
 function VideoCatalog() {
   const [videoList, setVideoList] = useState([]);
@@ -19,18 +26,18 @@ function VideoCatalog() {
   const [openPlayerModal, setOpenPlayerModal] = useState(false);
   const [openImportModal, setOpenImportModal] = useState(false);
   const [id, setId] = useState(null);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState('');//
   const [zeroResults, setZeroResults] = useState(false);
-  const [videoUrl, setVideoUrl] = useState("");
+  const [videoUrl, setVideoUrl] = useState('');
   const [videoData, setVideoData] = useState([]);
 
   useEffect(() => {
     setLoading(true);
-    listCatalog();
+    listCatalog('');
   }, []);
 
-  async function listCatalog(e = null) {
-    e && e.preventDefault();
+  async function listCatalog(search = null) {
+    // e && e.preventDefault();
     setLoading(true);
     try {
       let response = await api.get(`videos?search=${search}`);
@@ -58,7 +65,6 @@ function VideoCatalog() {
   }
 
   function openPlayer(videoData = null) {
-    console.log(videoData);
     setVideoUrl(videoData);
     setVideoData(videoData);
     setOpenPlayerModal(true);
@@ -87,12 +93,12 @@ function VideoCatalog() {
         <Grid item xs={1}></Grid>
         {loading && <Skeleton animation="wave" />}
         <Grid item xs={10}>
-          <TopSearch />
-          <Grid container style={{ position: "relative" }}>
+          <TopSearch listCatalog={listCatalog} />
+          <Grid container style={{ position: 'relative' }}>
             <Sidemenu editModal={editModal} importModal={importModal} />
             <Grid
               item
-              style={{ position: "relative", width: "calc( 100% - 250px)" }}
+              style={{ position: 'relative', width: 'calc( 100% - 250px)' }}
             >
               <Grid container>
                 {!loading &&
@@ -106,6 +112,14 @@ function VideoCatalog() {
                       />
                     );
                   })}
+
+                {zeroResults && (
+                  <div style={{ padding: '30px' }}>
+                    <Box p={2} bgcolor="primary" color="primary">
+                      No videos found
+                    </Box>
+                  </div>
+                )}
               </Grid>
             </Grid>
           </Grid>

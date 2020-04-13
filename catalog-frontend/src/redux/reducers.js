@@ -5,11 +5,13 @@ const initialLoginState = {
 export default function reducer(state = initialLoginState, { type, payload }) {
   //
   switch (type) {
-    case "SET_USER_STATE":
+    case 'SET_USER_STATE':
       return {
         ...state,
         userData: payload,
       };
+    default:
+      return state;
   }
   return state;
 }

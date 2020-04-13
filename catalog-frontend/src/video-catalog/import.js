@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 import {
   Button,
@@ -11,14 +11,14 @@ import {
   CardContent,
   CardActionArea,
   TextField,
-} from "@material-ui/core";
-import styled from "styled-components";
+} from '@material-ui/core';
+import styled from 'styled-components';
 
-import Paper from "@material-ui/core/Paper";
-import Fade from "@material-ui/core/Fade";
-import Skeleton from "@material-ui/lab/Skeleton";
+import Paper from '@material-ui/core/Paper';
+import Fade from '@material-ui/core/Fade';
+import Skeleton from '@material-ui/lab/Skeleton';
 
-import api from "services/api";
+import api from 'services/api';
 
 const StyledDialog = styled(Dialog)`
   .MuiBackdrop-root {
@@ -28,7 +28,7 @@ const StyledDialog = styled(Dialog)`
 `;
 
 function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [videoList, setVideoList] = useState([]);
   const [videoData, setVideoData] = useState([]);
   const [searching, setSearching] = useState(false);
@@ -68,18 +68,18 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
   async function saveDetail() {
     if (id) {
       try {
-        await api.put("videos/" + id, { ...videoData });
+        await api.put('videos/' + id, { ...videoData });
       } catch (err) {
         console.log(err);
       }
     } else {
       try {
-        await api.post("videos", { ...videoData });
+        await api.post('videos', { ...videoData });
       } catch (err) {
         console.log(err);
       }
     }
-    listCatalog();
+    listCatalog('');
     setOpenImportModal(false);
   }
 
@@ -92,13 +92,13 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
       // contentStyle={{ width: "70%", maxWidth: "none" }}
     >
       <DialogTitle id="about-movie-dialog">Add movie</DialogTitle>
-      <DialogContent style={{ height: "60vh" }}>
+      <DialogContent style={{ height: '60vh' }}>
         <Grid container>
           <Grid item md={4}>
             <form onSubmit={searchVideo}>
               <TextField
                 label="Type title"
-                value={search || ""}
+                value={search || ''}
                 disabled={searching}
                 onChange={(e) => setSearch(e.target.value)}
                 fullWidth
@@ -118,13 +118,13 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
 
           <Grid item md={8}>
             <Grid container>
-              {searching && <Skeleton width={"100%"} height={500} />}
+              {searching && <Skeleton width={'100%'} height={500} />}
               {selectedMovie && (
                 <Grid item md={8} s={2}>
                   <Fade in={!searching}>
-                    <Paper elevation={0} style={{ padding: "20px" }}>
+                    <Paper elevation={0} style={{ padding: '20px' }}>
                       <TextField
-                        value={videoData.Title || ""}
+                        value={videoData.Title || ''}
                         label="Title"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({ ...prev, title: value }));
@@ -133,7 +133,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.Genre || ""}
+                        value={videoData.Genre || ''}
                         label="Genre"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({ ...prev, Genre: value }));
@@ -142,7 +142,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.Released || ""}
+                        value={videoData.Released || ''}
                         label="Release date"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({
@@ -154,7 +154,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.Actors || ""}
+                        value={videoData.Actors || ''}
                         label="Main actors"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({ ...prev, Actors: value }));
@@ -163,7 +163,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.Plot || ""}
+                        value={videoData.Plot || ''}
                         label="Summarized plot"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({ ...prev, Plot: value }));
@@ -172,7 +172,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.youtubeTrailer || ""}
+                        value={videoData.youtubeTrailer || ''}
                         label="Youtube URL trailer"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({
@@ -184,7 +184,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.Poster || ""}
+                        value={videoData.Poster || ''}
                         label="Poster"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({ ...prev, Poster: value }));
@@ -195,7 +195,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                   </Fade>
                 </Grid>
               )}
-              <Grid item md={4} style={{ padding: "20px" }}>
+              <Grid item md={4} style={{ padding: '20px' }}>
                 {selectedMovie && (
                   <Fade in={!searching}>
                     <Paper elevation={0}>
@@ -203,7 +203,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                         width="100%"
                         src={
                           videoData.Poster ||
-                          "https://via.placeholder.com/300x444?text=Poster"
+                          'https://via.placeholder.com/300x444?text=Poster'
                         }
                       />
                     </Paper>
@@ -219,7 +219,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
           Cancel
         </Button>
         <Button color="secondary" onClick={() => saveDetail()}>
-          Save
+          Add
         </Button>
       </DialogActions>
     </StyledDialog>
