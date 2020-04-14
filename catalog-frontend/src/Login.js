@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
@@ -72,6 +72,12 @@ function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      history.push('/video-catalog');
+    }
+  }, []);
+
   const handleClose = () => {
     setModalRegister(false);
   };
@@ -125,6 +131,7 @@ function Login() {
                 margin="normal"
                 required
                 fullWidth
+                name="email"
                 label="Email Address"
                 autoComplete="email"
                 onChange={(e) => {
@@ -137,6 +144,7 @@ function Login() {
                 margin="normal"
                 required
                 fullWidth
+                name="password"
                 label="Password"
                 type="password"
                 autoComplete="current-password"
@@ -166,7 +174,11 @@ function Login() {
                 </Link> */}
                 </Grid>
                 <Grid item>
-                  <Link onClick={() => setModalRegister(true)} variant="body2">
+                  <Link
+                    id="register"
+                    onClick={() => setModalRegister(true)}
+                    variant="body2"
+                  >
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

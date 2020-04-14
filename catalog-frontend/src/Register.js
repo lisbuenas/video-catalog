@@ -57,6 +57,7 @@ function Register({ modalRegister, handleClose }) {
             variant="outlined"
             margin="normal"
             required
+            name="email-register"
             fullWidth
             label="Email Address"
             autoComplete="email"
@@ -72,6 +73,7 @@ function Register({ modalRegister, handleClose }) {
             fullWidth
             label="Password"
             type="password"
+            name="password-register"
             autoComplete="current-password"
             onChange={(e) => {
               setPassword(e.target.value);

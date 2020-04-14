@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   frontend:
@@ -21,7 +21,7 @@ services:
     depends_on:
       - backend
     networks:
-      - webappnetwork
+      - localhost
 
   backend:
     build: catalog-backend
@@ -42,12 +42,12 @@ services:
     depends_on:
       - mongodb
     networks:
-      - webappnetwork
+      - localhost
 
   mongodb:
     image: mongo
     ports:
-      - "27017:27017"
+      - '27017:27017'
     #- "27018:27018"
   mongo-seed:
     build: ./mongo-seed
@@ -59,10 +59,10 @@ services:
     build:
       context: ./nginx
     ports:
-      - "5000:80"
+      - '5000:80'
 
 networks:
-  webappnetwork:
+  localhost:
     driver: bridge
   # environment:
   # NODE_ENV: development

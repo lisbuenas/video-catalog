@@ -6,19 +6,21 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Card,
   Grid,
-  CardContent,
-  CardActionArea,
   TextField,
+  Typography,
 } from '@material-ui/core';
 import styled from 'styled-components';
 
 import Paper from '@material-ui/core/Paper';
 import Fade from '@material-ui/core/Fade';
 import Skeleton from '@material-ui/lab/Skeleton';
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import api from 'services/api';
+
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import CardImport from './card-import';
 
 const StyledDialog = styled(Dialog)`
   .MuiBackdrop-root {
@@ -89,9 +91,18 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
       aria-labelledby="about-movie-dialog"
       maxWidth="lg"
       fullWidth
-      // contentStyle={{ width: "70%", maxWidth: "none" }}
+      PaperProps={{
+        style: {
+          backgroundColor: 'rgba(0,0,0,0.6)',
+          boxShadow: 'none',
+        },
+      }}
     >
-      <DialogTitle id="about-movie-dialog">Add movie</DialogTitle>
+      <DialogTitle id="about-movie-dialog">
+        <Typography variant="h7" component="h7" color="primary">
+          Add movie
+        </Typography>
+      </DialogTitle>
       <DialogContent style={{ height: '60vh' }}>
         <Grid container>
           <Grid item md={4}>
@@ -100,20 +111,30 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                 label="Type title"
                 value={search || ''}
                 disabled={searching}
+                style={{
+                  backgroundColor: 'rgba(255,255,255,0.6)',
+                }}
                 onChange={(e) => setSearch(e.target.value)}
-                fullWidth
               />
               <Button disabled={searching} onClick={() => searchVideo()}>
                 Search
               </Button>
             </form>
-            {videoList.map((el, index) => (
-              <Card key={index} onClick={() => searchById(el.imdbID)}>
-                <CardActionArea>
-                  <CardContent>{el.Title}</CardContent>
-                </CardActionArea>
-              </Card>
-            ))}
+
+            <div
+              style={{
+                position: 'absolute',
+                width: '30%',
+                height: '60%',
+                overflow: 'auto',
+              }}
+            >
+              <PerfectScrollbar>
+                {videoList.map((el, index) => (
+                  <CardImport key={index} movie={el} searchById={searchById} />
+                ))}
+              </PerfectScrollbar>
+            </div>
           </Grid>
 
           <Grid item md={8}>
@@ -215,10 +236,8 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button color="secondary" onClick={() => setOpenImportModal(false)}>
-          Cancel
-        </Button>
-        <Button color="secondary" onClick={() => saveDetail()}>
+        <Button onClick={() => setOpenImportModal(false)}>Cancel</Button>
+        <Button variant="contained" onClick={() => saveDetail()}>
           Add
         </Button>
       </DialogActions>

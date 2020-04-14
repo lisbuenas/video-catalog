@@ -56,6 +56,7 @@ function Header() {
           aria-controls="menu-appbar"
           aria-haspopup="true"
           onClick={handleMenu}
+          id="menu"
           color="inherit"
         >
           <AccountCircle />
@@ -75,7 +76,9 @@ function Header() {
           open={open}
           onClose={handleClose}
         >
-          <MenuItem onClick={() => logout()}>Logout</MenuItem>
+          <MenuItem id="logout" onClick={() => logout()}>
+            Logout
+          </MenuItem>
         </Menu>
       </Toolbar>
     </AppBar>

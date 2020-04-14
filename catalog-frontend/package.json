@@ -10,9 +10,9 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
-    "puppeteer": "^2.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-perfect-scrollbar": "^1.5.8",
     "react-player": "^1.15.3",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
@@ -21,11 +21,21 @@
     "redux": "^4.0.5",
     "styled-components": "^5.1.0"
   },
+  "devDependencies": {
+    "faker": "^4.1.0",
+    "jest-puppeteer": "^4.4.0",
+    "jest-styled-components": "^6.3.3",
+    "puppeteer": "^2.1.1",
+    "react-app-rewired": "^2.1.5"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --verbose",
     "eject": "react-scripts eject"
+  },
+  "env": {
+    "jest": true
   },
   "eslintConfig": {
     "extends": "react-app"

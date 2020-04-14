@@ -9,7 +9,7 @@ import {
   Box,
 } from '@material-ui/core';
 import Skeleton from '@material-ui/lab/Skeleton';
-
+import PerfectScrollbar from 'react-perfect-scrollbar';
 import api from 'services/api';
 
 import VideoEdit from './edit';
@@ -18,6 +18,8 @@ import Player from './player';
 import CardVideo from './card-video';
 import Sidemenu from 'partials/Sidemenu';
 import TopSearch from 'partials/TopSearch';
+
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 function VideoCatalog() {
   const [videoList, setVideoList] = useState([]);
@@ -37,7 +39,6 @@ function VideoCatalog() {
   }, []);
 
   async function listCatalog(search = null) {
-    // e && e.preventDefault();
     setLoading(true);
     try {
       let response = await api.get(`videos?search=${search}`);
@@ -98,7 +99,11 @@ function VideoCatalog() {
             <Sidemenu editModal={editModal} importModal={importModal} />
             <Grid
               item
-              style={{ position: 'relative', width: 'calc( 100% - 250px)' }}
+              style={{
+                position: 'relative',
+                width: 'calc( 100% - 250px)',
+                height: '60%',
+              }}
             >
               <Grid container>
                 {!loading &&

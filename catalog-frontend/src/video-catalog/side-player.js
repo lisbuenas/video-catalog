@@ -117,7 +117,7 @@ function SidePlayer({ openPlayerModal, videoData }) {
       >
         {(data && data.Title) || 'Video'}
         <div style={{ height: '240px', width: '240px' }}>
-          <ResponsiveContainer width={'100%'} height={300}>
+          <ResponsiveContainer width={'99%'} height={300}>
             <PieChart key={'chart' + updateCount}>
               <Pie
                 activeShape={renderActiveShape}
@@ -169,7 +169,7 @@ function SidePlayer({ openPlayerModal, videoData }) {
           style={{
             position: 'absolute',
             bottom: '10px',
-            width: '100%',
+            width: '99%',
             right: '-1px',
             height: '10px',
             backgroundColor: '#3598DB',

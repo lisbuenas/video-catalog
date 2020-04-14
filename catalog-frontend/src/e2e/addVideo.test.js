@@ -1,10 +1,15 @@
-const puppeteer = require("puppeteer");
+import puppeteer from 'puppeteer';
+import { login } from './utils/login';
 
-(async () => {
-  const browser = await puppeteer.launch();
+test('Add new video', async () => {
+  const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: null,
+    devtools: true,
+    args: ['--start-maximized'],
+    // slowMo: 10,
+  });
+
   const page = await browser.newPage();
-  await page.goto("https://localhost:3000");
-  await page.screenshot({ path: "example.png" });
-
-  await browser.close();
-})();
+  await login(page);
+}, 900000);
