@@ -15,8 +15,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//let url = "mongodb://mongodb/videodb"; //
-let url = "mongodb://localhost/videodb";
+let url = "mongodb://mongodb/videodb"; //
+//let url = "mongodb://localhost/videodb";
 let mongoDB = process.env.MONGODB_URI || url;
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
@@ -30,10 +30,10 @@ app.use("/videos", video);
 const user = require("./routes/users.route"); // Importa rota
 app.use("/users", user);
 
-// const port1 = process.env.DADO;
-// console.log(`Your Dado is ${port1}`);
+if (process.env.NODE_ENV !== "test") {
+  app.listen(process.env.PORT, () => {
+    console.log("Server running " + process.env.PORT);
+  });
+}
 
-let port = 8000;
-app.listen(port, () => {
-  console.log("Server running " + port);
-});
+module.exports = app;

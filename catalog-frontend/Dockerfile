@@ -1,43 +1,15 @@
-#FROM node:alpine
-
-#WORKDIR '/app'
-
-#COPY package.json .
-#RUN npm install
-#COPY . .
-#CMD ["npm", "start"]
-
-
-# Imagem de Origem
-#FROM node:alpine
-# Diretório de trabalho(é onde a aplicação ficará dentro do container).
-#WORKDIR /app
-# Adicionando `/app/node_modules/.bin` para o $PATH
-#ENV PATH /app/node_modules/.bin:$PATH
-# Instalando dependências da aplicação e armazenando em cache.
-#COPY package.json /app/package.json
-#RUN npm install --silent
-# RUN npm install react-scripts@3.3.1 -g --silent
-# start app
-# CMD ["npm", "start"]
-#CMD ["yarn", "run", "serve"]
-
-
-
-
-FROM node:alpine as builder
-
+# build environment
+FROM node:12.2.0-alpine as build
 WORKDIR /app
-
-COPY ./package*.json ./
-
-RUN npm install
-
-COPY . .
-
+ENV PATH /app/node_modules/.bin:$PATH
+COPY package.json /app/package.json
+RUN npm install --silent
+RUN npm install react-scripts@3.0.1 -g --silent
+COPY . /app
 RUN npm run build
 
-FROM nginx
-EXPOSE 3000
-COPY --from=builder /app/build /usr/share/nginx/html
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+# production environment
+FROM nginx:1.16.0-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

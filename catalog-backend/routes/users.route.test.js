@@ -1,24 +1,29 @@
 const request = require("supertest");
 const app = require("../server");
 
+const faker = require("faker");
+
 describe("User Endpoints", () => {
   it("Should add a new user", async () => {
     const res = await request(app).post("/users/register").send({
-      Title: "Title Test",
-      Genre: "Genre test",
-      Released: "20/20/2000",
-      Actors: "Actor test",
-      youtubeTrailer: "youtube url",
-      Poster: "Image",
-      imdbRating: "7.2",
+      email: faker.internet.email(),
+      password: "123456",
     });
     expect(res.statusCode).toEqual(200);
   });
 
+  it("Should FAIL add a new user(duplicated)", async () => {
+    const res = await request(app).post("/users/register").send({
+      email: "fe.lisboa@yahoo.com.br",
+      password: "123456",
+    });
+    expect(res.statusCode).toEqual(409);
+  });
+
   it("Should login", async () => {
     const res = await request(app).post("/users/authenticate").send({
-      email: "",
-      password: "",
+      email: "fe.lisboa@yahoo.com.br",
+      password: "123456",
     });
     expect(res.statusCode).toEqual(200);
   });
@@ -28,6 +33,6 @@ describe("User Endpoints", () => {
       email: "",
       password: "",
     });
-    expect(res.statusCode).toEqual(500);
+    expect(res.statusCode).toEqual(418);
   });
 });

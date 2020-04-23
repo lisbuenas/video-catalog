@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import ReactPlayer from 'react-player';
-import { Dialog, DialogContent, DialogTitle, Button } from '@material-ui/core';
-import CancelIcon from '@material-ui/icons/Cancel';
-import styled from 'styled-components';
-import SidePlayer from './side-player';
+import ReactPlayer from "react-player";
+import { Dialog, DialogContent, DialogTitle, Button } from "@material-ui/core";
+import CancelIcon from "@material-ui/icons/Cancel";
+import styled from "styled-components";
+import SidePlayer from "./side-player";
 
 const StyledDialog = styled(Dialog)`
   .MuiBackdrop-root {
@@ -28,22 +28,22 @@ function Player({ setOpenPlayerModal, openPlayerModal, videoData }) {
         open={openPlayerModal}
         aria-labelledby="player-movie-dialog"
         maxWidth="md"
-        style={{ backgroundColor: 'none', boxShadow: 'none' }}
-        overlayStyle={{ backgroundColor: 'transparent' }}
+        style={{ backgroundColor: "none", boxShadow: "none" }}
+        overlayStyle={{ backgroundColor: "transparent" }}
         fullWidth
         elevation={0}
         PaperProps={{
           style: {
-            backgroundColor: 'transparent',
-            boxShadow: 'none',
+            backgroundColor: "transparent",
+            boxShadow: "none",
           },
         }}
         shadow={0}
       >
         <DialogTitle id="about-movie-dialog">
-          {(data && data.Title) || 'Video'}
+          {(data && data.Title) || "Video"}
           <Button
-            style={{ float: 'right', marginRight: '125px' }}
+            style={{ float: "right", marginRight: "125px" }}
             color="contrast"
             onClick={() => setOpenPlayerModal(false)}
           >
@@ -53,31 +53,31 @@ function Player({ setOpenPlayerModal, openPlayerModal, videoData }) {
         <DialogContent
           elevation={0}
           style={{
-            height: '60vh',
-            backgroundColor: 'transparent',
-            boxShadow: 'none',
-            marginRight: '125px',
+            height: "60vh",
+            backgroundColor: "transparent",
+            boxShadow: "none",
+            marginRight: "125px",
           }}
         >
           <ReactPlayer
             onReady={() => {
               setFound(true);
-              console.log('Found!');
+              console.log("Found!");
             }}
             onError={() => {
               setFound(false);
-              console.log('Not found');
+              console.log("Not found");
             }}
             width="100%"
             height="100%"
-            style={{ width: '60vh' }}
-            url={data.youtubeTrailer || 'not found'}
+            style={{ width: "60vh" }}
+            url={data.youtubeTrailer || "not found"}
             playing
           />
 
           {!found && (
             <img
-              style={{ position: 'absolute', top: '65px' }}
+              style={{ position: "absolute", top: "65px" }}
               alt="Not found"
               src="/not-found.jpg"
             />

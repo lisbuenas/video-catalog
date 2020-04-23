@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Dialog, DialogContent, Typography } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
+import { Dialog, DialogContent, Typography } from "@material-ui/core";
 
-import { Pie, PieChart, ResponsiveContainer, Sector } from 'recharts';
+import { Pie, PieChart, ResponsiveContainer, Sector } from "recharts";
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -26,7 +26,7 @@ const renderActiveShape = (props) => {
   const my = cy + (outerRadius + 30) * sin;
   const ex = mx + (cos >= 0 ? 1 : -1) * 22;
   const ey = my;
-  const textAnchor = cos >= 0 ? 'start' : 'end';
+  const textAnchor = cos >= 0 ? "start" : "end";
 
   return (
     <g>
@@ -90,47 +90,47 @@ function SidePlayer({ openPlayerModal, videoData }) {
       hideBackdrop={true}
       disableBackdropClick={true}
       style={{
-        height: 'auto',
-        width: 'auto',
-        right: 'auto',
-        bottom: '0',
-        top: '0',
-        left: '0',
+        height: "auto",
+        width: "auto",
+        right: "auto",
+        bottom: "0",
+        top: "0",
+        left: "0",
       }}
       PaperProps={{
         style: {
-          backgroundColor: '#E0DBD5',
-          boxShadow: 'none',
+          backgroundColor: "#E0DBD5",
+          boxShadow: "none",
         },
       }}
     >
       <DialogContent
         style={{
-          height: '100%',
-          position: 'fixed',
+          height: "100%",
+          position: "fixed",
           right: 0,
           top: 0,
-          width: '220px',
-          backgroundColor: '#E0DBD5',
-          boxShadow: 'none',
+          width: "220px",
+          backgroundColor: "#E0DBD5",
+          boxShadow: "none",
         }}
       >
-        {(data && data.Title) || 'Video'}
-        <div style={{ height: '240px', width: '240px' }}>
-          <ResponsiveContainer width={'99%'} height={300}>
-            <PieChart key={'chart' + updateCount}>
+        {(data && data.Title) || "Video"}
+        <div style={{ height: "240px", width: "240px" }}>
+          <ResponsiveContainer width={"99%"} height={300}>
+            <PieChart key={"chart" + updateCount}>
               <Pie
                 activeShape={renderActiveShape}
                 data={[
                   {
-                    name: 'IMDB',
+                    name: "IMDB",
                     value: videoData.imdbRating,
-                    fill: '#349ADC',
+                    fill: "#349ADC",
                   },
                   {
-                    name: '',
+                    name: "",
                     value: 10 - videoData.imdbRating,
-                    fill: '#8D8D8D',
+                    fill: "#8D8D8D",
                   },
                 ]}
                 cx={100}
@@ -145,8 +145,8 @@ function SidePlayer({ openPlayerModal, videoData }) {
                 textAnchor="middle"
                 dominantBaseline="middle"
               >
-                {(data && 'IMDB ' + (videoData.imdbRating || '')) ||
-                  'no rating'}
+                {(data && "IMDB " + (videoData.imdbRating || "")) ||
+                  "no rating"}
               </text>
             </PieChart>
           </ResponsiveContainer>
@@ -154,25 +154,25 @@ function SidePlayer({ openPlayerModal, videoData }) {
         <Typography variant="h6" gutterBottom>
           Actors
         </Typography>
-        {(data && data.Actors) || 'Actors'}
+        {(data && data.Actors) || "Actors"}
 
         <Typography variant="h6" gutterBottom>
           Released
         </Typography>
-        {(data && data.Released) || 'Released'}
+        {(data && data.Released) || "Released"}
 
         <Typography variant="h6" gutterBottom>
           Plot
         </Typography>
-        {(data && data.Plot) || 'Released'}
+        {(data && data.Plot) || "Released"}
         <div
           style={{
-            position: 'absolute',
-            bottom: '10px',
-            width: '99%',
-            right: '-1px',
-            height: '10px',
-            backgroundColor: '#3598DB',
+            position: "absolute",
+            bottom: "10px",
+            width: "99%",
+            right: "-1px",
+            height: "10px",
+            backgroundColor: "#3598DB",
           }}
         ></div>
       </DialogContent>

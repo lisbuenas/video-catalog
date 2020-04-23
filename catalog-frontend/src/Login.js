@@ -1,61 +1,62 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
-import api from 'services/api';
-import Register from 'Register';
+import api from "services/api";
+import axios from "axios";
+import Register from "Register";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         Felipe Lisboa
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '100vh',
+    height: "100vh",
   },
   image: {
-    backgroundImage: 'url(/splash.jpg)',
-    backgroundRepeat: 'no-repeat',
+    backgroundImage: "url(/splash.jpg)",
+    backgroundRepeat: "no-repeat",
     backgroundColor:
-      theme.palette.type === 'light'
+      theme.palette.type === "light"
         ? theme.palette.grey[50]
         : theme.palette.grey[900],
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
   },
   paper: {
     margin: theme.spacing(8, 4),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
@@ -73,8 +74,8 @@ function Login() {
   const [password, setPassword] = useState();
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      history.push('/video-catalog');
+    if (localStorage.getItem("token")) {
+      history.push("/video-catalog");
     }
   }, []);
 
@@ -86,20 +87,20 @@ function Login() {
     e && e.preventDefault();
 
     try {
-      let res = await api.post('users/authenticate', {
+      let res = await axios.post("/users/authenticate", {
         email: email,
         password: password,
       });
 
-      localStorage.setItem('token', JSON.stringify(res.data.data));
+      localStorage.setItem("token", JSON.stringify(res.data.data));
       dispatch({
-        type: 'SET_USER_STATE',
+        type: "SET_USER_STATE",
         payload: {
           userData: true,
         },
       });
 
-      history.push('/video-catalog');
+      history.push("/video-catalog");
     } catch (err) {
       console.log(err);
     }
@@ -117,9 +118,9 @@ function Login() {
               <img
                 width="100"
                 style={{
-                  display: 'inline-block',
-                  textAlign: 'center',
-                  paddingTop: '20px',
+                  display: "inline-block",
+                  textAlign: "center",
+                  paddingTop: "20px",
                 }}
                 alt="VideoLib"
                 src="/icon.fw.png"

@@ -1,12 +1,12 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-import { makeStyles, AppBar, Toolbar, Typography } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import { makeStyles, AppBar, Toolbar, Typography } from "@material-ui/core";
+import IconButton from "@material-ui/core/IconButton";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,17 +38,19 @@ function Header() {
   function logout() {
     localStorage.clear();
     dispatch({
-      type: 'SET_USER_STATE',
+      type: "SET_USER_STATE",
       payload: null,
     });
-    history.push('/');
+    history.push("/");
   }
 
   return (
     <AppBar position="static" elevation={0}>
       <Toolbar>
         <Typography variant="h6" className={classes.title}>
-          {JSON.parse(localStorage.getItem('token')).user.email}
+          {JSON.parse(localStorage.getItem("token")) &&
+            JSON.parse(localStorage.getItem("token")).user &&
+            JSON.parse(localStorage.getItem("token")).user.email}
         </Typography>
 
         <IconButton
@@ -65,13 +67,13 @@ function Header() {
           id="menu-appbar"
           anchorEl={anchorEl}
           anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
+            vertical: "top",
+            horizontal: "right",
           }}
           keepMounted
           transformOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
+            vertical: "top",
+            horizontal: "right",
           }}
           open={open}
           onClose={handleClose}

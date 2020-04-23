@@ -1,33 +1,33 @@
-import React from 'react';
-import { Grid, Button, Box } from '@material-ui/core';
-import TheatersIcon from '@material-ui/icons/Theaters';
+import React from "react";
+import { Grid, Button, Box } from "@material-ui/core";
+import TheatersIcon from "@material-ui/icons/Theaters";
 
 function Sidemenu(props) {
   return (
     <Grid
       item
       style={{
-        height: 'calc(60%  180px)',
-        minHeight: '400px',
-        width: '250px',
-        position: 'position',
-        backgroundColor: '#2C97DF',
+        height: "calc(60%  180px)",
+        minHeight: "400px",
+        width: "250px",
+        position: "position",
+        backgroundColor: "#2C97DF",
       }}
     >
       <div
         style={{
-          display: 'inline-block',
-          textAlign: 'center',
-          width: '100%',
-          marginTop: '50px',
+          display: "inline-block",
+          textAlign: "center",
+          width: "100%",
+          marginTop: "50px",
         }}
       >
         <TheatersIcon
           style={{
-            fontSize: '50px',
-            textAlign: 'center',
-            display: 'inline-block',
-            color: '#FFF',
+            fontSize: "50px",
+            textAlign: "center",
+            display: "inline-block",
+            color: "#FFF",
           }}
           color="light"
         />
@@ -35,6 +35,7 @@ function Sidemenu(props) {
           <Button
             alignItems="center"
             color="primary"
+            id="add-movie-dialog"
             onClick={() => props.importModal()}
           >
             Add Movie

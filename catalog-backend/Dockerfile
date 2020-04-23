@@ -1,15 +1,13 @@
-FROM node:12.16.2
-
-RUN mkdir -p /usr/src/app
+FROM node:8
+# Create app directory
 WORKDIR /usr/src/app
+# Install app dependencies
+COPY package*.json ./
 
-COPY package.json /usr/src/app
-
-RUN npm install -g nodemon
 RUN npm install
+# Copy app source code
+COPY . .
 
-
-COPY . /usr/src/app
-
-EXPOSE 8000
-CMD ["npm", "start"]
+#Expose port and start application
+EXPOSE 8080
+CMD [ "npm", "start" ]

@@ -1,10 +1,11 @@
 version: "3"
+
 services:
   frontend:
+    container_name: catalog-frontend
     build:
       context: ./catalog-frontend
       dockerfile: Dockerfile
-    stdin_open: true
     environment:
       - PORT=${REACT_APP_PORT}
     expose:
@@ -12,11 +13,16 @@ services:
     ports:
       - ${REACT_APP_PORT}:${REACT_APP_PORT}
     stdin_open: true
-    links:
+    volumes:
+      - ./catalog-frontend:/app
+    depends_on:
       - backend
+    networks:
+      - webappnetwork
 
   backend:
-    build: ./catalog-backend
+    build: catalog-backend
+    restart: always
     expose:
       - ${APP_SERVER_PORT}
     environment:
@@ -24,16 +30,30 @@ services:
       APP_SERVER_PORT: ${APP_SERVER_PORT}
     ports:
       - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+    links:
+      - mongodb
     stdin_open: true
+    tty: true
+    volumes:
+      - ./catalog-backend:/usr/src/app
+      - /usr/src/app/node_modules/
     depends_on:
       - mongodb
+    networks:
+      - webappnetwork
 
   mongodb:
     image: mongo
     ports:
       - "27017:27017"
+    networks:
+      - webappnetwork
 
   mongo-seed:
     build: ./mongo-seed
     links:
       - mongodb
+
+networks:
+  webappnetwork:
+    driver: bridge

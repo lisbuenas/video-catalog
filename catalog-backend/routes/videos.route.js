@@ -1,25 +1,28 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 const videoController = require("../controllers/video.controller");
 
-router.get("/", videoController.index);
-router.get("/:id", videoController.show);
-router.post("/", videoController.create);
-router.put("/:id", videoController.update);
-router.delete("/:id", videoController.delete);
+router.get("/", verifyJWT, videoController.index);
+router.get("/:id", verifyJWT, videoController.show);
+router.post("/", verifyJWT, videoController.create);
+router.put("/:id", verifyJWT, videoController.update);
+router.delete("/:id", verifyJWT, videoController.delete);
 module.exports = router;
 
 function verifyJWT(req, res, next) {
-  var token = req.headers["x-access-token"];
-  if (!token)
-    return res
-      .status(401)
-      .send({ auth: false, message: "Token não informado." });
+  let token = req.headers.authorization.substring(
+    7,
+    req.headers.authorization.length
+  );
 
-  jwt.verify(token, secret, function (err, decoded) {
+  if (!token)
+    return res.status(401).send({ auth: false, message: "Missing token" });
+
+  jwt.verify(token, process.env.SECRET, function (err, decoded) {
     if (err)
-      return res.status(500).send({ auth: false, message: "Token inválido." });
+      return res.status(403).send({ auth: false, message: "Invalid token" });
 
     req.userId = decoded.id;
     console.log("User Id: " + decoded.id);

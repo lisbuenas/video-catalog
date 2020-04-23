@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 import {
   Card,
@@ -7,19 +7,24 @@ import {
   CardActionArea,
   Input,
   Box,
-} from '@material-ui/core';
-import Skeleton from '@material-ui/lab/Skeleton';
-import PerfectScrollbar from 'react-perfect-scrollbar';
-import api from 'services/api';
+} from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import api from "services/api";
 
-import VideoEdit from './edit';
-import VideoImport from './import';
-import Player from './player';
-import CardVideo from './card-video';
-import Sidemenu from 'partials/Sidemenu';
-import TopSearch from 'partials/TopSearch';
+import VideoEdit from "./edit";
+import VideoImport from "./import";
+import Player from "./player";
+import CardVideo from "./card-video";
+import Sidemenu from "partials/Sidemenu";
+import TopSearch from "partials/TopSearch";
 
-import 'react-perfect-scrollbar/dist/css/styles.css';
+import axios from "axios";
+
+import "react-perfect-scrollbar/dist/css/styles.css";
+
+let user = JSON.parse(localStorage.getItem("token")) || "";
+const token = user && user.token;
 
 function VideoCatalog() {
   const [videoList, setVideoList] = useState([]);
@@ -30,18 +35,20 @@ function VideoCatalog() {
   const [id, setId] = useState(null);
   // const [search, setSearch] = useState('');//
   const [zeroResults, setZeroResults] = useState(false);
-  const [videoUrl, setVideoUrl] = useState('');
+  const [videoUrl, setVideoUrl] = useState("");
   const [videoData, setVideoData] = useState([]);
 
   useEffect(() => {
     setLoading(true);
-    listCatalog('');
+    listCatalog("");
   }, []);
 
   async function listCatalog(search = null) {
     setLoading(true);
     try {
-      let response = await api.get(`videos?search=${search}`);
+      let response = await axios.get(`/videos?search=${search}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       if (response.data.data.length > 0) {
         setZeroResults(false);
         setVideoList(response.data.data);
@@ -95,14 +102,14 @@ function VideoCatalog() {
         {loading && <Skeleton animation="wave" />}
         <Grid item xs={10}>
           <TopSearch listCatalog={listCatalog} />
-          <Grid container style={{ position: 'relative' }}>
+          <Grid container style={{ position: "relative" }}>
             <Sidemenu editModal={editModal} importModal={importModal} />
             <Grid
               item
               style={{
-                position: 'relative',
-                width: 'calc( 100% - 250px)',
-                height: '60%',
+                position: "relative",
+                width: "calc( 100% - 250px)",
+                height: "60%",
               }}
             >
               <Grid container>
@@ -119,7 +126,7 @@ function VideoCatalog() {
                   })}
 
                 {zeroResults && (
-                  <div style={{ padding: '30px' }}>
+                  <div style={{ padding: "30px" }}>
                     <Box p={2} bgcolor="primary" color="primary">
                       No videos found
                     </Box>

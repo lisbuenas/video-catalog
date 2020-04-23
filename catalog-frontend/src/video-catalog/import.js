@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 import {
   Button,
@@ -9,18 +9,19 @@ import {
   Grid,
   TextField,
   Typography,
-} from '@material-ui/core';
-import styled from 'styled-components';
+  Input,
+} from "@material-ui/core";
+import styled from "styled-components";
 
-import Paper from '@material-ui/core/Paper';
-import Fade from '@material-ui/core/Fade';
-import Skeleton from '@material-ui/lab/Skeleton';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import Paper from "@material-ui/core/Paper";
+import Fade from "@material-ui/core/Fade";
+import Skeleton from "@material-ui/lab/Skeleton";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
-import api from 'services/api';
+import axios from "axios";
 
-import 'react-perfect-scrollbar/dist/css/styles.css';
-import CardImport from './card-import';
+import "react-perfect-scrollbar/dist/css/styles.css";
+import CardImport from "./card-import";
 
 const StyledDialog = styled(Dialog)`
   .MuiBackdrop-root {
@@ -28,9 +29,11 @@ const StyledDialog = styled(Dialog)`
     backdrop-filter: url(filters.svg#filter) blur(4px) saturate(150%);
   }
 `;
+let user = JSON.parse(localStorage.getItem("token"));
+const token = user && user.token;
 
 function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [videoList, setVideoList] = useState([]);
   const [videoData, setVideoData] = useState([]);
   const [searching, setSearching] = useState(false);
@@ -41,7 +44,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
 
     setSearching(true);
     try {
-      let res = await api.get(
+      let res = await axios.get(
         `https://cors-anywhere.herokuapp.com/http://www.omdbapi.com/?i=tt3896198&apikey=149aa91b&s=${search}`
       );
       if (res.data.Search) setVideoList(res.data.Search);
@@ -55,7 +58,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
   async function searchById(imdbID) {
     setSearching(true);
     try {
-      let res = await api.get(
+      let res = await axios.get(
         `https://cors-anywhere.herokuapp.com/http://www.omdbapi.com/?apikey=149aa91b&i=${imdbID}`
       );
       if (res.data) setVideoData(res.data);
@@ -70,18 +73,30 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
   async function saveDetail() {
     if (id) {
       try {
-        await api.put('videos/' + id, { ...videoData });
+        await axios.put(
+          "/videos/" + id,
+          { ...videoData },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
       } catch (err) {
         console.log(err);
       }
     } else {
       try {
-        await api.post('videos', { ...videoData });
+        await axios.post(
+          "/videos",
+          { ...videoData },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
       } catch (err) {
         console.log(err);
       }
     }
-    listCatalog('');
+    listCatalog("");
     setOpenImportModal(false);
   }
 
@@ -93,8 +108,8 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
       fullWidth
       PaperProps={{
         style: {
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          boxShadow: 'none',
+          backgroundColor: "rgba(0,0,0,0.6)",
+          boxShadow: "none",
         },
       }}
     >
@@ -103,49 +118,58 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
           Add movie
         </Typography>
       </DialogTitle>
-      <DialogContent style={{ height: '60vh' }}>
+      <DialogContent style={{ height: "60vh" }}>
         <Grid container>
-          <Grid item md={4}>
+          <Grid item xs={4}>
             <form onSubmit={searchVideo}>
               <TextField
                 label="Type title"
-                value={search || ''}
+                name="search-field-import"
+                value={search || ""}
                 disabled={searching}
                 style={{
-                  backgroundColor: 'rgba(255,255,255,0.6)',
+                  backgroundColor: "rgba(255,255,255,0.6)",
+                  padding: "10px",
                 }}
                 onChange={(e) => setSearch(e.target.value)}
               />
-              <Button disabled={searching} onClick={() => searchVideo()}>
+              <Button
+                color="primary"
+                id="search-movie"
+                disabled={searching}
+                onClick={() => searchVideo()}
+              >
                 Search
               </Button>
             </form>
 
             <div
               style={{
-                position: 'absolute',
-                width: '30%',
-                height: '60%',
-                overflow: 'auto',
+                position: "absolute",
+                width: "30%",
+                height: "60%",
+                overflow: "auto",
               }}
             >
               <PerfectScrollbar>
                 {videoList.map((el, index) => (
-                  <CardImport key={index} movie={el} searchById={searchById} />
+                  <div className="result-movie-card" key={index}>
+                    <CardImport movie={el} searchById={searchById} />
+                  </div>
                 ))}
               </PerfectScrollbar>
             </div>
           </Grid>
 
-          <Grid item md={8}>
+          <Grid item xs={8}>
             <Grid container>
-              {searching && <Skeleton width={'100%'} height={500} />}
+              {searching && <Skeleton width={"100%"} height={500} />}
               {selectedMovie && (
                 <Grid item md={8} s={2}>
                   <Fade in={!searching}>
-                    <Paper elevation={0} style={{ padding: '20px' }}>
-                      <TextField
-                        value={videoData.Title || ''}
+                    <Paper elevation={0} style={{ padding: "20px" }}>
+                      <Input
+                        value={videoData.Title || ""}
                         label="Title"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({ ...prev, title: value }));
@@ -154,7 +178,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.Genre || ''}
+                        value={videoData.Genre || ""}
                         label="Genre"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({ ...prev, Genre: value }));
@@ -163,7 +187,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.Released || ''}
+                        value={videoData.Released || ""}
                         label="Release date"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({
@@ -175,7 +199,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.Actors || ''}
+                        value={videoData.Actors || ""}
                         label="Main actors"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({ ...prev, Actors: value }));
@@ -184,7 +208,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.Plot || ''}
+                        value={videoData.Plot || ""}
                         label="Summarized plot"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({ ...prev, Plot: value }));
@@ -193,7 +217,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.youtubeTrailer || ''}
+                        value={videoData.youtubeTrailer || ""}
                         label="Youtube URL trailer"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({
@@ -205,7 +229,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                       />
 
                       <TextField
-                        value={videoData.Poster || ''}
+                        value={videoData.Poster || ""}
                         label="Poster"
                         onChange={({ target: { value } }) => {
                           setVideoData((prev) => ({ ...prev, Poster: value }));
@@ -216,7 +240,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                   </Fade>
                 </Grid>
               )}
-              <Grid item md={4} style={{ padding: '20px' }}>
+              <Grid item md={4} style={{ padding: "20px" }}>
                 {selectedMovie && (
                   <Fade in={!searching}>
                     <Paper elevation={0}>
@@ -224,7 +248,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
                         width="100%"
                         src={
                           videoData.Poster ||
-                          'https://via.placeholder.com/300x444?text=Poster'
+                          "https://via.placeholder.com/300x444?text=Poster"
                         }
                       />
                     </Paper>
@@ -236,8 +260,10 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => setOpenImportModal(false)}>Cancel</Button>
-        <Button variant="contained" onClick={() => saveDetail()}>
+        <Button color="primary" onClick={() => setOpenImportModal(false)}>
+          Cancel
+        </Button>
+        <Button id="add-video" variant="contained" onClick={() => saveDetail()}>
           Add
         </Button>
       </DialogActions>
