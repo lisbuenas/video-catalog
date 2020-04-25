@@ -33,12 +33,12 @@ services:
       context: ./catalog-frontend
       dockerfile: Dockerfile
     stdin_open: true
-    #environment:
-    #  - PORT=${REACT_APP_PORT}
-    #expose:
-    #  - ${REACT_APP_PORT}
-    #ports:
-    #  - ${REACT_APP_PORT}:${REACT_APP_PORT}
+    environment:
+      - PORT=${REACT_APP_PORT}
+    expose:
+      - ${REACT_APP_PORT}
+    ports:
+      - ${REACT_APP_PORT}:${REACT_APP_PORT}
     #stdin_open: true
 
   nginx:

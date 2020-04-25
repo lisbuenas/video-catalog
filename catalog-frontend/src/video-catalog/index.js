@@ -19,9 +19,7 @@ import CardVideo from "./card-video";
 import Sidemenu from "partials/Sidemenu";
 import TopSearch from "partials/TopSearch";
 
-import environment from "environment";
-
-import axios from "axios";
+import api from "services/api";
 
 import "react-perfect-scrollbar/dist/css/styles.css";
 
@@ -47,12 +45,7 @@ function VideoCatalog() {
   async function listCatalog(search = null) {
     setLoading(true);
     try {
-      let response = await axios.get(
-        `${environment.BASE_URL}videos?search=${search}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      let response = await api.get(`videos?search=${search}`);
       if (response.data.data.length > 0) {
         setZeroResults(false);
         setVideoList(response.data.data);

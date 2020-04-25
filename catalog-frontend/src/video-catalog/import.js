@@ -17,7 +17,9 @@ import Paper from "@material-ui/core/Paper";
 import Fade from "@material-ui/core/Fade";
 import Skeleton from "@material-ui/lab/Skeleton";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import environment from "environment";
+
+import api from "services/api";
+
 import axios from "axios";
 
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -44,7 +46,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
 
     setSearching(true);
     try {
-      let res = await axios.get(
+      let res = await api.get(
         `https://cors-anywhere.herokuapp.com/http://www.omdbapi.com/?i=tt3896198&apikey=149aa91b&s=${search}`
       );
       if (res.data.Search) setVideoList(res.data.Search);
@@ -58,7 +60,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
   async function searchById(imdbID) {
     setSearching(true);
     try {
-      let res = await axios.get(
+      let res = await api.get(
         `https://cors-anywhere.herokuapp.com/http://www.omdbapi.com/?apikey=149aa91b&i=${imdbID}`
       );
       if (res.data) setVideoData(res.data);
@@ -79,13 +81,7 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
       }
     } else {
       try {
-        await axios.post(
-          `${environment.BASE_URL}videos`,
-          { ...videoData },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        await api.post(`videos`, { ...videoData });
       } catch (err) {
         console.log(err);
       }
