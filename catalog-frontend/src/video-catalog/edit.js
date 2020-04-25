@@ -9,6 +9,7 @@ import {
   TextField,
 } from "@material-ui/core";
 
+import api from "services/api";
 import axios from "axios";
 
 let user = JSON.parse(localStorage.getItem("token"));
@@ -28,9 +29,7 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
 
   async function loadDetail() {
     try {
-      let res = await axios.get("videos/" + id, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      let res = await api.get(`videos/${id}`);
       setVideoData(res.data);
     } catch (err) {}
   }
@@ -38,17 +37,13 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
   async function saveDetail() {
     if (id) {
       try {
-        await axios.put("videos/" + id, videoData, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await api.put(`videos/${id}`, videoData);
       } catch (err) {
         console.log(err);
       }
     } else {
       try {
-        await axios.post("videos", videoData, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        await api.post(`videos`, videoData);
       } catch (err) {
         console.log(err);
       }
@@ -59,9 +54,7 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
 
   async function removeVideo() {
     try {
-      await axios.delete("videos/" + id, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await api.delete(`videos/${id}`);
     } catch (err) {
       console.log(err);
     } finally {

@@ -87,7 +87,12 @@ function Login() {
     e && e.preventDefault();
 
     try {
-      let res = await axios.post("/users/authenticate", {
+      /*let res = await axios.post("/api/users/authenticate", {
+        email: email,
+        password: password,
+      });*/
+
+      let res = await api.post("/users/authenticate", {
         email: email,
         password: password,
       });
@@ -169,11 +174,7 @@ function Login() {
               </Button>
 
               <Grid container>
-                <Grid item xs>
-                  {/* <Link href="#" variant="body2">
-                  Forgot password?
-                </Link> */}
-                </Grid>
+                <Grid item xs></Grid>
                 <Grid item>
                   <Link
                     id="register"

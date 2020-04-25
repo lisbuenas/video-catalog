@@ -25,10 +25,10 @@ let db = mongoose.connection;
 db.on("error", console.error.bind(console, "Error MongoDB connection"));
 
 const video = require("./routes/videos.route"); // Importa rota
-app.use("/videos", video);
+app.use("/api/videos", video);
 
 const user = require("./routes/users.route"); // Importa rota
-app.use("/users", user);
+app.use("/api/users", user);
 
 if (process.env.NODE_ENV !== "test") {
   app.listen(process.env.PORT, () => {

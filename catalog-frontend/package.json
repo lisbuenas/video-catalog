@@ -28,9 +28,9 @@
     "puppeteer": "^2.1.1",
     "react-app-rewired": "^2.1.5"
   },
-  "proxy": "http://backend:8000",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start ",
+    "start-docker": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --verbose",
     "eject": "react-scripts eject"

@@ -17,7 +17,7 @@ import Paper from "@material-ui/core/Paper";
 import Fade from "@material-ui/core/Fade";
 import Skeleton from "@material-ui/lab/Skeleton";
 import PerfectScrollbar from "react-perfect-scrollbar";
-
+import environment from "environment";
 import axios from "axios";
 
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -73,20 +73,14 @@ function VideoImport({ listCatalog, id, openImportModal, setOpenImportModal }) {
   async function saveDetail() {
     if (id) {
       try {
-        await axios.put(
-          "/videos/" + id,
-          { ...videoData },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        await api.put(`videos/${id}`, { ...videoData });
       } catch (err) {
         console.log(err);
       }
     } else {
       try {
         await axios.post(
-          "/videos",
+          `${environment.BASE_URL}videos`,
           { ...videoData },
           {
             headers: { Authorization: `Bearer ${token}` },

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 import {
-  Card,
-  Button,
+  // Card,
+  // Button,
   Grid,
-  CardActionArea,
-  Input,
+  // CardActionArea,
+  // Input,
   Box,
 } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
-import PerfectScrollbar from "react-perfect-scrollbar";
-import api from "services/api";
+// import PerfectScrollbar from "react-perfect-scrollbar";
+// import api from "services/api";
 
 import VideoEdit from "./edit";
 import VideoImport from "./import";
@@ -18,6 +18,8 @@ import Player from "./player";
 import CardVideo from "./card-video";
 import Sidemenu from "partials/Sidemenu";
 import TopSearch from "partials/TopSearch";
+
+import environment from "environment";
 
 import axios from "axios";
 
@@ -33,7 +35,6 @@ function VideoCatalog() {
   const [openPlayerModal, setOpenPlayerModal] = useState(false);
   const [openImportModal, setOpenImportModal] = useState(false);
   const [id, setId] = useState(null);
-  // const [search, setSearch] = useState('');//
   const [zeroResults, setZeroResults] = useState(false);
   const [videoUrl, setVideoUrl] = useState("");
   const [videoData, setVideoData] = useState([]);
@@ -46,9 +47,12 @@ function VideoCatalog() {
   async function listCatalog(search = null) {
     setLoading(true);
     try {
-      let response = await axios.get(`/videos?search=${search}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      let response = await axios.get(
+        `${environment.BASE_URL}videos?search=${search}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       if (response.data.data.length > 0) {
         setZeroResults(false);
         setVideoList(response.data.data);
