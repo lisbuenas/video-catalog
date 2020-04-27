@@ -1,8 +1,8 @@
-# video-catalog
+# Video Catalog
 
 ---
 
-Simple video Create/Edit project
+Simple video Create/Edit project. Images, Icon, logo and design by own authory.
 
 ## Running Project:
 
