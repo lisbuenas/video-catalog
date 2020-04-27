@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "start-docker": "SET \"MONGODB_URI=mongodb://mongodb/videodb\" && nodemon server.js"
   },
   "author": "Felipe Lisboa",
   "license": "ISC",

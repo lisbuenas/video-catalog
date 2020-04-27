@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import {
   Dialog,
   DialogActions,
@@ -9,11 +9,10 @@ import {
   DialogContent,
   TextField,
   Snackbar,
-} from "@material-ui/core";
+} from '@material-ui/core';
+import styled from 'styled-components';
 
-import styled from "styled-components";
-
-import axios from "axios";
+import api from 'services/api';
 
 const StyledDialog = styled(Dialog)`
   .MuiBackdrop-root {
@@ -25,27 +24,27 @@ const StyledDialog = styled(Dialog)`
 function Register({ modalRegister, handleClose }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [open, setOpen] = useState(false);
 
   async function register() {
     try {
-      await axios.post("/users/register", { email: email, password: password });
-      let res = await axios.post("/users/authenticate", {
+      await api.post('/users/register', { email: email, password: password });
+      let res = await api.post('/users/authenticate', {
         email: email,
         password: password,
       });
 
-      localStorage.setItem("token", JSON.stringify(res.data.data));
+      localStorage.setItem('token', JSON.stringify(res.data.data.token));
       dispatch({
-        type: "SET_USER_STATE",
+        type: 'SET_USER_STATE',
         payload: {
           userData: true,
         },
       });
 
-      history.push("/video-catalog");
+      history.push('/video-catalog');
     } catch (err) {
       console.log(err);
       setOpen(true);
@@ -59,7 +58,7 @@ function Register({ modalRegister, handleClose }) {
   return (
     <>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={open}
         onClose={handleCloseSnack}
         message="Duplicated"

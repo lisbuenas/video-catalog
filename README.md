@@ -1,6 +1,30 @@
 # video-catalog
+
+---
+
 Simple video Create/Edit project
 
+## Running Project:
+
+```
+docker-compose up
+```
+
+and the application will open on port 3000
+
+## e2e testing
+
+```
+yarn test
+```
+
+## integration tests
+
+```
+npm test
+```
+
+## Q / A
 
 1.How do you intend to approach this project? What technologies have you decided to use for each part?
 

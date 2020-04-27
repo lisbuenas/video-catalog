@@ -1,11 +1,11 @@
-import axios from "axios";
-import { getToken } from "./auth";
+import axios from 'axios';
+import { getToken } from './auth';
 
 const api = axios.create({
   baseURL:
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:8000/api/"
-      : "/api/",
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:8000/api/'
+      : '/api/',
 });
 
 api.interceptors.request.use(async (config) => {

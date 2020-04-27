@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
 import {
   Button,
@@ -7,13 +7,9 @@ import {
   DialogActions,
   DialogContent,
   TextField,
-} from "@material-ui/core";
+} from '@material-ui/core';
 
-import api from "services/api";
-import axios from "axios";
-
-let user = JSON.parse(localStorage.getItem("token"));
-const token = user && user.token;
+import api from 'services/api';
 
 function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
   const [videoData, setVideoData] = useState([]);
@@ -49,7 +45,7 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
       }
     }
     setOpenModal(false);
-    listCatalog();
+    listCatalog('');
   }
 
   async function removeVideo() {
@@ -59,7 +55,7 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
       console.log(err);
     } finally {
       setOpenRemoveModal(false);
-      listCatalog("");
+      listCatalog('');
       setOpenModal(false);
     }
   }
@@ -87,14 +83,14 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
 
       <Dialog open={openModal} aria-labelledby="about-movie-dialog">
         <DialogTitle id="about-movie-dialog">
-          About movie{" "}
+          About movie{' '}
           <Button onClick={() => setOpenRemoveModal(true)} id="remove-button">
             Remove
           </Button>
         </DialogTitle>
         <DialogContent>
           <TextField
-            value={videoData.Title || ""}
+            value={videoData.Title || ''}
             label="Title"
             onChange={({ target: { value } }) => {
               setVideoData((prev) => ({ ...prev, Title: value }));
@@ -102,7 +98,7 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
             fullWidth
           />
           <TextField
-            value={videoData.genre || ""}
+            value={videoData.genre || ''}
             label="Genre"
             onChange={({ target: { value } }) => {
               setVideoData((prev) => ({ ...prev, Genre: value }));
@@ -110,7 +106,7 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
             fullWidth
           />
           <TextField
-            value={videoData.Released || ""}
+            value={videoData.Released || ''}
             label="Released"
             onChange={({ target: { value } }) => {
               setVideoData((prev) => ({ ...prev, Released: value }));
@@ -118,7 +114,7 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
             fullWidth
           />
           <TextField
-            value={videoData.Actors || ""}
+            value={videoData.Actors || ''}
             label="Actors"
             onChange={({ target: { value } }) => {
               setVideoData((prev) => ({ ...prev, Actors: value }));
@@ -127,7 +123,7 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
           />
 
           <TextField
-            value={videoData.Plot || ""}
+            value={videoData.Plot || ''}
             label="Plot"
             onChange={({ target: { value } }) => {
               setVideoData((prev) => ({ ...prev, Plot: value }));
@@ -135,7 +131,7 @@ function VideoEdit({ id, openModal, setOpenModal, listCatalog }) {
             fullWidth
           />
           <TextField
-            value={videoData.youtubeTrailer || ""}
+            value={videoData.youtubeTrailer || ''}
             label="Youtube Trailer"
             onChange={({ target: { value } }) => {
               setVideoData((prev) => ({ ...prev, youtubeTrailer: value }));
